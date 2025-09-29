@@ -296,6 +296,21 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+    {
+        "lib": "Game",
+        "mw_version": "GC/2.6",
+        "cflags": [
+            "-proc gekko",
+            "-align powerpc",
+            "-sym on",
+            "-O3,s",
+            "-opt nopeep",
+        ],
+        "progress_category": "game",  # str | List[str]
+        "objects": [
+            Object(NonMatching, "ngc/veronica/prog/ngc_sg_sycfg.c"),
+        ],
+    },
 ]
 
 
