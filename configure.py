@@ -308,7 +308,8 @@ config.libs = [
         ],
         "progress_category": "game",  # str | List[str]
         "objects": [
-            Object(NonMatching, "ngc/veronica/prog/ngc_sg_sycfg.c"),
+            Object(NonMatching, "ngc/veronica/prog/ngc_sg_sycfg.c"),  # functions matched, but sbss is non-matching
+            Object(NonMatching, "ngc/veronica/prog/vibman.c"),  # ready to match
         ],
     },
 ]

@@ -18,3 +18,10 @@ ngc/veronica/prog/ngc_sg_sycfg.c:
 	extabindex  start:0x8000AE34 end:0x8000AE58
 	.text       start:0x80013F70 end:0x80014068
 	.sbss       start:0x804E9570 end:0x804E9578
+
+ngc/veronica/prog/vibman.c:
+	extab       start:0x80009F50 end:0x80009F78
+	extabindex  start:0x80011B78 end:0x80011BB4
+	.text       start:0x8016D5FC end:0x8016D810
+	.sdata      start:0x804E8F80 end:0x804E8F88
+	.sbss       start:0x804E9790 end:0x804E9798
