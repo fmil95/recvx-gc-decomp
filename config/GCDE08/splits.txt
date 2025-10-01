@@ -22,6 +22,11 @@ ngc/veronica/prog/ngc_sg_sycfg.c:
 	.text       start:0x80013F70 end:0x80014068
 	.sbss       start:0x804E9570 end:0x804E9578
 
+ngc/veronica/prog/ngc_sg_syhw.c:
+	extab       start:0x80005690 end:0x800056A0
+	extabindex  start:0x8000AE58 end:0x8000AE70
+	.text       start:0x80014068 end:0x8001411C
+
 ngc/veronica/prog/sbinit.c:
 	extab       start:0x80009640 end:0x80009650
 	extabindex  start:0x80010DE0 end:0x80010DF8
