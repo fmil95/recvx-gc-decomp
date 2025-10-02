@@ -314,6 +314,9 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_syhw.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_syrtc.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_sytmr.c"),  # ready to match
+            Object(NonMatching, "ngc/veronica/prog/game.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/pad.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/padman.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sbinit.c"),  # functions matched, but sbss is undefined
             Object(NonMatching, "ngc/veronica/prog/vibman.c"),  # ready to match
         ],

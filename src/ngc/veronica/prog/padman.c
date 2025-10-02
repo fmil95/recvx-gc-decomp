@@ -1,0 +1,6 @@
+
+
+// InitReadKeyEx
+// SetRepeatKeyTimer
+// CheckSoftResetKeyFlag
+// ClearSoftResetKeyFlag
