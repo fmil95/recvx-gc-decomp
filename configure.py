@@ -300,11 +300,26 @@ config.libs = [
         "lib": "Game",
         "mw_version": "GC/2.6",
         "cflags": [
+            "-nodefaults",
             "-proc gekko",
             "-align powerpc",
+            "-enum int",
+            "-fp hardware",
             "-sym on",
             "-O3,s",
             "-opt nopeep",
+            '-pragma "cats off"',
+            '-pragma "warn_notinlined off"',
+            "-maxerrors 1",
+            "-nosyspath",
+            "-RTTI off",
+            "-fp_contract on",
+            "-str reuse",
+            "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+            "-i include",
+            f"-i build/{config.version}/include",
+            f"-DBUILD_VERSION={version_num}",
+            f"-DVERSION_{config.version}",
         ],
         "progress_category": "game",  # str | List[str]
         "objects": [
