@@ -308,6 +308,7 @@ config.libs = [
         ],
         "progress_category": "game",  # str | List[str]
         "objects": [
+            Object(NonMatching, "ngc/veronica/prog/ngc_sg_sybt.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_sycbl.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_sycfg.c"),  # functions matched, but sbss is non-matching
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_syhw.c"),  # needs decompiling

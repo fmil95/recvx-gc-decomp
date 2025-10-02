@@ -13,6 +13,11 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+ngc/veronica/prog/ngc_sg_sybt.c:
+	extab       start:0x80005668 end:0x80005678
+	extabindex  start:0x8000AE1C end:0x8000AE34
+	.text       start:0x80013E54 end:0x80013F68
+
 ngc/veronica/prog/ngc_sg_sycbl.c:
 	.text       start:0x80013F68 end:0x80013F70
 
