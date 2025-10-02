@@ -1,6 +1,8 @@
-// TODO: replace current function signature for the Katana original
+#include "sg_xpt.h"
 
-unsigned int syTmrGetCount()
+Uint32 syTmrGetCount(void);
+
+Uint32 syTmrGetCount(void)
 {
 
 }
