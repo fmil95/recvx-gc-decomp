@@ -9,3 +9,7 @@ void syHwFinish(void)
 {
 
 }
+
+// syHwInit
+
+// syHwInit2
