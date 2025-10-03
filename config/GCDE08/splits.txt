@@ -54,6 +54,8 @@ ngc/veronica/prog/padman.c:
 	extab       start:0x80009288 end:0x80009290
 	extabindex  start:0x8001084C end:0x80010858
 	.text       start:0x8013159C end:0x80131744
+	.sdata      start:0x804E8E98 end:0x804E8EA0
+	.sbss       start:0x804E9660 end:0x804E9670
 
 ngc/veronica/prog/sbinit.c:
 	extab       start:0x80009640 end:0x80009650
