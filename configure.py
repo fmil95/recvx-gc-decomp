@@ -338,6 +338,36 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/ngc_Ninjapad.c"),  # ready to match
         ],
     },
+    {
+        "lib": "Criware",
+        "mw_version": "GC/2.6",
+        "cflags": [
+            "-nodefaults",
+            "-proc gekko",
+            "-align powerpc",
+            "-enum int",
+            "-fp hardware",
+            "-sym on",
+            "-O3,s",
+            "-opt nopeep",
+            '-pragma "cats off"',
+            '-pragma "warn_notinlined off"',
+            "-maxerrors 1",
+            "-nosyspath",
+            "-RTTI off",
+            "-fp_contract on",
+            "-str reuse",
+            "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+            "-i include",
+            f"-i build/{config.version}/include",
+            f"-DBUILD_VERSION={version_num}",
+            f"-DVERSION_{config.version}",
+        ],
+        "progress_category": "criware",  # str | List[str]
+        "objects": [
+            Object(NonMatching, "cri/libadxe/adx_errs.c"),
+        ],
+    },
 ]
 
 
@@ -362,6 +392,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 # Adjust as desired for your project
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
+    ProgressCategory("criware", "Criware Code"),
     ProgressCategory("sdk", "SDK Code"),
 ]
 config.progress_each_module = args.verbose
