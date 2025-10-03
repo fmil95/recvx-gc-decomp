@@ -73,3 +73,8 @@ ngc/veronica/prog/ngc_NaFog.c:
 	extab       start:0x8000A230 end:0x8000A250
 	extabindex  start:0x80011FC8 end:0x80011FF8
 	.text       start:0x80176FB4 end:0x8017734C
+
+ngc/veronica/prog/ngc_Ninjapad.c:
+	extab       start:0x8000A380 end:0x8000A388
+	extabindex  start:0x800121C0 end:0x800121CC
+	.text       start:0x80179014 end:0x80179034

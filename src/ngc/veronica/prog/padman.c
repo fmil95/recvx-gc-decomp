@@ -11,6 +11,11 @@ BUTTON_INFO ButtonInfo[5];
 PAD_WRK Pad[4];
 REPEAT_INFO RepeatInfo[4][6];
 
+void InitReadKeyEx(int MaxPlayer);
+void SetRepeatKeyTimer(unsigned int FirstTimer, unsigned int NextTimer);
+int CheckSoftResetKeyFlag(int ControllerId);
+void ClearSoftResetKeyFlag(int ControllerId);
+
 void InitReadKeyEx(int MaxPlayer) 
 {
     unsigned int i; 
