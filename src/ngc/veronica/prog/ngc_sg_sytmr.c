@@ -1,4 +1,4 @@
-#include "sg_xpt.h"
+#include <sg_xpt.h>
 
 Uint32 syTmrGetCount(void);
 

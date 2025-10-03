@@ -334,6 +334,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/padman.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sbinit.c"),  # functions matched, but sbss is undefined
             Object(NonMatching, "ngc/veronica/prog/vibman.c"),  # ready to match
+            Object(NonMatching, "ngc/veronica/prog/ngc_NaFog.c"),  # needs decompiling
         ],
     },
 ]

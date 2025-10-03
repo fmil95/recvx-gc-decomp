@@ -1,8 +1,6 @@
+#include <sg_xpt.h>
 
-// TODO: move these types declarations and the struct below elsewhere
-
-typedef unsigned char			Uint8;
-typedef signed char				Sint8;
+// TODO: move the struct below elsewhere
 
 typedef struct 
 {
@@ -17,6 +15,14 @@ typedef struct
 char PortIdTbl[/*4*/] = {2, 8, 14, 20, 0, 0, 0, 0};
 int EnadleVibrationFlag;
 unsigned int VibStopTime;
+
+void InitVibrationUnit();
+void ExitVibrationUnit();
+void SetUseVibrationUnit(int Flag);
+int GetUseVibrationUnit();
+int CheckVibrationUnit(unsigned int PortId);
+int StartVibration(unsigned int PortId, PDS_VIBPARAM* vpp);
+int StopVibration(unsigned int PortId);
 
 void InitVibrationUnit()
 { 

@@ -1,8 +1,7 @@
-// TODO: move all this stuff below somewhere else
-typedef unsigned char     Uint8;
-typedef unsigned int   Uint32;
+#include <sg_xpt.h>
+#include <ninjadef.h>
 
-#define NULL 0
+// TODO: move all this stuff below somewhere else
 
 #define set_imask(mask)             _builtin_set_imask(mask)
 
@@ -19,12 +18,11 @@ typedef unsigned int   Uint32;
 // sbss
 Uint8* _BSG_END; // TODO: define the actual sbss segment in splits.txt
 
-// TODO: replace current function signatures for the Katana originals
-void sbInitSystem(int mode, int frame, int count);
+void sbInitSystem(Int mode, Int frame, Int count);
 void sbExitSystem(void);
 
 unsigned int InitGdSystemEx(unsigned int MaxDirNum); // TODO: remove this function declaration after decompiling gdlib.c
-void sbInitSystem(int mode, int frame, int count)
+void sbInitSystem(Int mode, Int frame, Int count)
 {
     set_imask(15); 
     
