@@ -62,6 +62,11 @@ ngc/veronica/prog/sbinit.c:
 	extabindex  start:0x80010DE0 end:0x80010DF8
 	.text       start:0x8014EA24 end:0x8014EB14
 
+ngc/veronica/prog/sync.c:
+	extab       start:0x80009E10 end:0x80009E30
+	extabindex  start:0x80011998 end:0x800119C8
+	.text       start:0x801682E4 end:0x801689A4
+
 ngc/veronica/prog/vibman.c:
 	extab       start:0x80009F50 end:0x80009F78
 	extabindex  start:0x80011B78 end:0x80011BB4
