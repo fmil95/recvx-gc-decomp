@@ -3,6 +3,7 @@
 #include <ninjastr.h>
 #include <ninjacnk.h>
 #include <sg_pad.h>
+#include <sg_sybt.h>
 
 typedef struct BUTTON_INFO
 {
