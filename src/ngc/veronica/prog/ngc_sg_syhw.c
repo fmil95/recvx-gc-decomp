@@ -1,4 +1,3 @@
-
 // syHwInit() and syHwInit2() need decompilation, they are not empty functions like their PS2 counterparts
 
 void syHwFinish(void);
@@ -11,5 +10,4 @@ void syHwFinish(void)
 }
 
 // syHwInit
-
 // syHwInit2

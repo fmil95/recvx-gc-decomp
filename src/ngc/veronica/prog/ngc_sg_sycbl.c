@@ -7,6 +7,8 @@ typedef enum SYE_CBL_TAG {
 	SYE_CBL_MAX
 } SYE_CBL;
 
+SYE_CBL syCblCheck( void );
+
 SYE_CBL syCblCheck( void )
 { 
     return SYE_CBL_NTSC;

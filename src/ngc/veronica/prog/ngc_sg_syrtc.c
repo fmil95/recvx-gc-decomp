@@ -1,13 +1,13 @@
-// TODO: replace current function signatures for the Katana originals
+#include <sg_xpt.h>
 
-int syRtcFinish()
+void syRtcFinish( void )
 {
 
 }
 
 // syRtcGetDate
 
-int syRtcInit()
+Sint32 syRtcInit( void )
 { 
     return 0;
 }

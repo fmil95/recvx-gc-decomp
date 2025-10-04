@@ -1,17 +1,19 @@
-// TODO: move this define somewhere else 
-#define NULL 0
+#include <sg_xpt.h>
 
 // sbss
-int SoundMode;
+int SoundMode; // TODO: investigate why this is only 50% matching
 
-// TODO: replace current function signatures for the Katana originals
+Sint32 syCfgExit( Void  );
+Sint32 syCfgGetSoundMode( Sint32* pnMode );
+Sint32 syCfgInit( Void* );
+Sint32 syCfgSetSoundMode( Sint32 nMode );
 
-int syCfgExit() 
+Sint32 syCfgExit( Void  ) 
 {
 
 }
 
-int syCfgGetSoundMode(int* pnMode)
+Sint32 syCfgGetSoundMode( Sint32* pnMode )
 { 
     switch (fn_801966A8()) 
     {                              
@@ -31,12 +33,12 @@ int syCfgGetSoundMode(int* pnMode)
     return 0;
 }
 
-int syCfgInit()
+Sint32 syCfgInit( Void* )
 {
     syCfgGetSoundMode(&SoundMode);
 }
 
-int syCfgSetSoundMode(int nMode)
+Sint32 syCfgSetSoundMode( Sint32 nMode )
 { 
     switch (nMode) 
     {                          
