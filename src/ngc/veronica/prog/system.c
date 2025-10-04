@@ -42,7 +42,6 @@ int bhCalcVtxBuffer()
 }
 
 // bhChangeHWSetting
-
 // bhInitSystem
 // bhInitRoomChangeSystem
 
@@ -96,27 +95,170 @@ void bhSysCallWarning()
 } 
 
 // bhSysCallIpl
-// bhSysCallFirstmovie
-// bhSysCallTitle
-// bhSysCallOpening
+
+// SYS_WORK struct mismatch is preventing this one from getting to 100%
+void bhSysCallFirstmovie() 
+{
+    njFogDisable();
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);
+    
+    switch (Adv_BioCvTitle()) 
+    {
+    case 1:
+        sys->ss_flg |= 0x400200;
+        
+        sys->pdm_keytpb = sys->keytype;
+        
+        sys->keytype = 0;
+        
+        sys->tk_flg = 0x300010;
+        break;
+    case 2:
+        sys->ss_flg &= ~0x200;
+        sys->tk_flg = 0x300010;
+        break;
+    case 3:
+        sys->ss_flg |= 0x200;
+        sys->tk_flg = 0x308040;
+        
+        *(int*)&sys->typ_md0 = 0;
+        break;
+    case 4:
+        sys->tk_flg = 0x310000;
+        
+        *(int*)&sys->typ_md0 = 0;
+        break;
+    case 5:
+        sys->tk_flg = 0x380000;
+        break;
+    case 6:
+        sys->ss_flg &= ~0x200;
+        sys->tk_flg = 0x300010;
+        break;
+    }
+}
+
+void bhSysCallTitle() 
+{ 
+    njFogDisable(); 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);
+    
+    sys->tk_flg = 0x300020; 
+} 
+
+void bhSysCallOpening() 
+{ 
+    njFogDisable(); 
+    
+    njSetBackColor(0x00000000, 0x00000000, 0x00000000);  
+    
+    bhFirstGameStart(); 
+} 
+
 // bhFirstGameStart
-// bhSysCallPad
-// bhSysCallGame
+
+void bhSysCallPad() 
+{ 
+    if ((sys->ss_flg & 0x40000000)) 
+    { 
+        sys->sp_flg = ~0x0; 
+        sys->ss_flg &= ~0x40000000;
+    }
+    
+    if ((sys->sp_flg & 0x20))
+    {
+        bhSetPad();
+    }
+
+    if (((sys->cb_flg & 0x4)) || (((sys->tk_flg & 0x1000)) && (!(sys->ts_flg & 0x1000))))
+    { 
+        sys->pad_on &= 0x1FD188F; 
+        sys->pad_ps &= 0x1FD188F; 
+    }
+} 
+
+void bhSysCallGame()
+{
+    sys->pfm_cts = syTmrGetCount();
+    
+    sys->loop_ct = 1;
+    
+    if (((!(sys->st_flg & 0x1C040008)) && (!(sys->ss_flg & 0x80000000))) && (((sys->cb_flg & 0x4)) && ((sys->pad_ps & 0x10000)) && (!(sys->cb_flg & 0x10000000)))) 
+    {
+        sys->cb_flg |= 0x10000000;
+    }
+    
+    bhCheckSubTask();
+    
+    bhMainSequence();
+    
+    sys->gm_flg |= 0x20000000;
+    
+    sys->gfrm_ct++;
+}
+
 // bhCheckSubTask
 // bhSysCallEvent
 // bhSysCallMap
 // bhSysCallItemselect
 // bhSysCallDoordemo
 // bhSysCallMovie
-// bhSysCallEnding
-// bhSysCallGameover
-// bhSysCallTypewriter
+
+void bhSysCallEnding() 
+{ 
+    ControlRanking();
+}
+
+void bhSysCallGameover()
+{ 
+    bhControlGameOver();
+}
+
+void bhSysCallTypewriter() 
+{ 
+    if ((sys->ts_flg & 0x80))
+    { 
+        njFogDisable(); 
+    } 
+    
+    ControlTypewriter();
+}
+
 // bhSysCallOption
-// bhSysCallCompEvent
+
+void bhSysCallCompEvent() 
+{ 
+    bhControlSpEvtComputer();
+}
+
 // bhSysCallMonitor
 // bhSysCallSndMonitor
 // bhSysCallScreenSaver
-// bhReturnTitle
+
+void bhReturnTitle()
+{ 
+    sys->ss_flg |= 0x20000; 
+    
+    bhExitGame(); 
+    
+    if (!(sys->ss_flg & 0x200000))
+    { 
+        sys->tk_flg = 0x300008;
+    } 
+    else 
+    { 
+        sys->ss_flg &= ~0x200000; 
+        sys->tk_flg = 0x300004; 
+    }
+    
+    sys->ts_flg = 0; 
+    
+    sys->ss_flg &= ~0x20000; 
+    sys->ss_flg |= 0x1000; 
+} 
+
 // bhExitGame
 
 void bhSetEventTimer(int mode)
