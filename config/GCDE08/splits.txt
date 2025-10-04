@@ -70,6 +70,11 @@ ngc/veronica/prog/sync.c:
 	extabindex  start:0x80011998 end:0x800119C8
 	.text       start:0x801682E4 end:0x801689A4
 
+ngc/veronica/prog/system.c:
+	extab       start:0x80009E30 end:0x80009F30
+	extabindex  start:0x800119C8 end:0x80011B48
+	.text       start:0x801689A4 end:0x8016D344
+
 ngc/veronica/prog/vibman.c:
 	extab       start:0x80009F50 end:0x80009F78
 	extabindex  start:0x80011B78 end:0x80011BB4
