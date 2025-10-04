@@ -4,6 +4,16 @@
 #include <ninjacnk.h>
 #include <sg_pad.h>
 #include <sg_sybt.h>
+#include <sg_pdvib.h>
+
+typedef struct PDS_VIBPARAM_EX
+{
+	// total size: 0x4
+    unsigned char flag; // offset 0x0, size 0x1
+    char power;         // offset 0x1, size 0x1
+    unsigned char freq; // offset 0x2, size 0x1
+    unsigned char inc;  // offset 0x3, size 0x1
+} PDS_VIBPARAM_EX;
 
 typedef struct BUTTON_INFO
 {
@@ -491,7 +501,6 @@ typedef struct CONICAL_FRUSTUM
 typedef struct SYS_WORK
 {
 	// total size: 0x2ACF0
-    int pad;
     unsigned int ssd_ver; // offset 0x0, size 0x4
     unsigned int ssd_flg; // offset 0x4, size 0x4
     unsigned int ssd_reserve; // offset 0x8, size 0x4
@@ -499,6 +508,7 @@ typedef struct SYS_WORK
     char adjust_x; // offset 0xD, size 0x1
     char adjust_y; // offset 0xE, size 0x1
     char vibration; // offset 0xF, size 0x1
+    int pad;
     int best_tm[8]; // offset 0x10, size 0x20
     unsigned int sys_partid; // offset 0x30, size 0x4
     unsigned int itm_partid; // offset 0x34, size 0x4

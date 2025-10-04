@@ -23,6 +23,12 @@ SYS_WORK* sys;
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
+int EventVibrationMode;
+PAD_WRK Pad[4];
+int CurrentPortId;
+PDS_VIBPARAM_EX VibP[32];
+char VibFlag[5] = { 0x01, 0x08, 0x80, 0x09, 0x81 };
+int SystemAdjustFlag;
 
 // bhReleaseFreeMemory
 // ExitApplication
@@ -153,7 +159,7 @@ SYS_BT_SYSTEMID BootDiscSystemId;
 // RequestAdjustDisplay 
 // ExecAdjustDisplay 
 // InitPlayLogSystem 
-// ExitPlayLogSystem 
+void ExitPlayLogSystem();
 // ReadPlayLog 
 // WritePlayLog 
 
@@ -341,15 +347,84 @@ void ExitSoundProgram()
 // GetTimeMoive 
 // WaitPrePlayMovie 
 // PlayMovieMain
-// SetEventVibrationMode
-// StartVibrationBasic 
-// StartVibrationEx 
-// StopVibrationBasic 
-// StopVibrationEx 
-// SetAdjustDisplay 
-// RequestAdjustDisplay 
-// ExecAdjustDisplay 
-// InitPlayLogSystem 
-// ExitPlayLogSystem 
-// ReadPlayLog 
-// WritePlayLog 
+
+void SetEventVibrationMode(int Mode) 
+{ 
+    EventVibrationMode = Mode; 
+}
+
+void StartVibrationBasic(int PortNo, int AtrbId, int VibNo)
+{
+    PDS_VIBPARAM VibPrm;
+    
+    if ((!(sys->ss_flg & 0x400000)) && ((EventVibrationMode == 0) || (AtrbId == 2))) 
+    {
+        VibPrm.flag = VibFlag[VibP[VibNo].flag];
+        
+        *(unsigned char*)&VibPrm.power = VibP[VibNo].power;
+        
+        VibPrm.freq = VibP[VibNo].freq;
+        
+        VibPrm.inc = VibP[VibNo].inc;
+        
+        StartVibration((PortNo * 6) + 2, &VibPrm);
+    }
+}
+
+void StartVibrationEx(int AtrbId, int VibNo) 
+{ 
+    StartVibrationBasic(CurrentPortId, AtrbId, VibNo);
+}
+
+void StopVibrationBasic(int PortNo) 
+{ 
+    StopVibration((PortNo * 6) + 2);
+}
+
+void StopVibrationEx() 
+{ 
+    StopVibrationBasic(CurrentPortId);
+}
+
+void SetAdjustDisplay() 
+{ 
+    SystemAdjustFlag = 1; 
+}
+
+void RequestAdjustDisplay(int AdjustX, int AdjustY)
+{ 
+    sys->adjust_x = AdjustX;
+    sys->adjust_y = AdjustY; 
+    
+    SetAdjustDisplay(); 
+}
+
+void ExecAdjustDisplay()
+{ 
+    if (SystemAdjustFlag != 0) 
+    { 
+        njAdjustDisplay(sys->adjust_x, sys->adjust_y + 1); 
+        
+        SystemAdjustFlag = 0; 
+    }
+} 
+
+void InitPlayLogSystem()
+{
+
+}
+
+void ExitPlayLogSystem()
+{
+
+}
+
+void ReadPlayLog()
+{
+
+}
+
+void WritePlayLog()
+{
+
+}
