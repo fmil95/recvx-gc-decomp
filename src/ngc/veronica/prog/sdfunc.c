@@ -1,5 +1,6 @@
 #include "structs.h"
 
+ADX_WORK AdxDef[2] = { { 2, 48000, 2, -1 }, { 1, 48000, 2, -1 } };
 int PlayerFootStepSwitch[3];
 int SystemSeSlotSwitch;
 int WeaponSeSlotSwitch;
@@ -25,6 +26,8 @@ unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
 MOV_INFO MovieInfo;
 int EventVibrationMode;
+BH_PWORK* plp;
+unsigned char* DestReadPtr;
 int GenAdxfSlot;
 int OpenDriveTrayFlag;
 RMI_WORK rmi;
@@ -337,11 +340,92 @@ void ExitSoundProgram()
 // ExecuteSoundCommand 
 // SendSoundCommand 
 // ExecSoundSystemMonitor 
-// RequestReadIsoFile 
-// RequestReadInsideFile 
-// fn_8015713C
-// GetIsoFileSize 
-// GetInsideFileSize 
+
+int RequestReadIsoFile(char* FileName, void* DestPtr)
+{
+    if (ReadFileRequestFlag != 0) 
+    {
+        return -1;
+    }
+    
+    if ((GenAdxfSlot = OpenAfsIsoFile(FileName)) < 0) 
+    {
+        return -1;
+    }
+    
+    RequestReadAfsInsideFile(GenAdxfSlot, DestPtr);
+    
+    DestReadPtr = DestPtr;
+
+    ReadFileRequestFlag = 1;
+
+    FileReadStatus = 1;
+
+    return 0;
+}
+
+int RequestReadInsideFile(unsigned int PartitionId, unsigned int FileId, void* DestPtr)
+{
+    if (ReadFileRequestFlag != 0) 
+    {
+        return -1;
+    }
+    
+    if ((GenAdxfSlot = OpenAfsInsideFile(PartitionId, FileId)) < 0) 
+    {
+        return -1;
+    }
+    
+    RequestReadAfsInsideFile(GenAdxfSlot, DestPtr);
+    
+    DestReadPtr = DestPtr;
+    
+    ReadFileRequestFlag = 1;
+    
+    FileReadStatus = 1;
+    
+    return 0;
+}
+
+int fn_8015713C()
+{
+    if (ReadFileRequestFlag == 0) 
+    {
+        return -1;
+    }
+    
+    CloseAfsInsideFile(GenAdxfSlot);
+    
+    ReadFileRequestFlag = 0;
+    
+    FileReadStatus = 2;
+    
+    return 0;
+}
+
+int GetIsoFileSize(char* FileName)
+{
+    GetFileSize(FileName);
+}
+
+int GetInsideFileSize(unsigned int PartitionId, unsigned int FileId)
+{
+    int SlotNo;
+    int FileSize;
+    
+    SlotNo = OpenAfsInsideFile(PartitionId, FileId);
+    
+    if (SlotNo < 0)
+    {
+        return 0;
+    }
+    
+    FileSize = GetAfsInsideFileSize(SlotNo);
+
+    CloseAfsInsideFile(SlotNo);
+    
+    return FileSize;
+}
 
 int GetReadFileStatus() 
 { 
@@ -372,7 +456,28 @@ void ExecFileManager()
 }
 
 // PlayStartMovieEx 
-// PlayStopMovieEx
+
+void PlayStopMovieEx(int Mode)
+{
+    if (MovieInfo.ExecMovieSystemFlag != 0) 
+    {
+        if (Mode == 0) 
+        {
+            StopMw();
+            
+            bhReleaseFreeMemory(MovieInfo.mmp);
+            
+            WakeupAdxStream(AdxDef);
+        }
+        
+        MovieInfo.ExecMovieSystemFlag = 0;
+        
+        if ((sys->cb_flg & 0x2)) 
+        {
+            sys->cb_flg &= ~0x2;
+        }
+    }
+}
 
 void PlayStopMovie()
 {
@@ -434,7 +539,88 @@ int WaitPrePlayMovie()
     return 0;
 }
 
-// PlayMovieMain
+// SYS_WORK struct mismatch is preventing this one from getting to 100%
+void bhSetScreenFade(unsigned int argb, float ct); // TODO: remove these two function declarations
+void SetMwVolume(int Volume);  
+int PlayMovieMain()
+{
+    int temp, temp2; // not from the debugging symbols
+
+    temp = 0;
+    
+    if (MovieInfo.ExecMovieSystemFlag != 0) 
+    {
+        if (OpenDriveTrayFlag != 0) 
+        {
+            PlayStopMovieEx(1);
+            
+            return 3;
+        }
+        
+        if (CheckSoftResetKeyFlag(-1) != 0)
+        {
+            PlayStopMovie();
+            
+            return 3;
+        }
+        
+        mwPlyStartFrame();
+        
+        if (MovieInfo.MovieCancelFlag != 0)
+        {
+            if ((Pad[CurrentPortId].press & 0x800)) 
+            {
+                if (MovieInfo.MovieFadeFlag == 0) 
+                {
+                    PlayStopMovie();
+                    
+                    return 2;
+                }
+                
+                if (MovieInfo.MovieFadeMode != 1) 
+                {
+                    MovieInfo.MovieFadeMode = 1;
+                    
+                    bhSetScreenFade(0xFF000000, MovieInfo.FrameCnt);
+                }
+            }
+        }
+        
+        if (MovieInfo.MovieFadeMode != 0) 
+        {
+            if (!(sys->cb_flg & 0x2)) 
+            {
+                PlayStopMovie();
+                
+                return 2;
+            }
+            
+            bhControlScreenFade();
+
+            temp = 1;
+            
+            MovieInfo.Vol -= MovieInfo.VolSpeed;
+            
+            SetMwVolume(MovieInfo.Vol);
+        }
+
+        temp2 = PlayMwMain();
+
+        if ((temp != 0) && (sys->fade_an > 0)) 
+        {
+            bhDrawScreenFade();
+        }
+        
+        if (temp2 == 0) 
+        {
+            PlayStopMovie();
+            
+            return 1;
+        }
+    }
+    
+    return 0;
+}
 
 void SetEventVibrationMode(int Mode) 
 { 

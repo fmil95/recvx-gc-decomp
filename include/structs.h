@@ -7,6 +7,15 @@
 #include <sg_pdvib.h>
 #include <sg_mwply.h>
 
+typedef struct ADX_WORK
+{
+	// total size: 0x10
+	unsigned int MaxChannel;    // offset 0x0, size 0x4
+    unsigned int MaxSampleRate; // offset 0x4, size 0x4
+    int RecoverType;            // offset 0x8, size 0x4
+    int ReloadSector;           // offset 0xC, size 0x4
+} ADX_WORK;
+
 typedef struct RMI_WORK
 {
     // total size: 0x54
