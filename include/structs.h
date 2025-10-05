@@ -5,6 +5,41 @@
 #include <sg_pad.h>
 #include <sg_sybt.h>
 #include <sg_pdvib.h>
+#include <sg_mwply.h>
+
+typedef struct RMI_WORK
+{
+    // total size: 0x54
+    unsigned char* put_ptr;      // offset 0x0, size 0x4
+    unsigned char* get_ptr;      // offset 0x4, size 0x4
+    int putsize;                 // offset 0x8, size 0x4
+    int getsize;                 // offset 0xC, size 0x4
+    int readrest;                // offset 0x10, size 0x4
+    int writerest;               // offset 0x14, size 0x4
+    int count;                   // offset 0x18, size 0x4
+    int proceed;                 // offset 0x1C, size 0x4
+    unsigned int button_old;     // offset 0x20, size 0x4
+    unsigned char cdata[32];     // offset 0x24, size 0x20
+    int iMovieState;             // offset 0x44, size 0x4
+    int iMovieFrame;             // offset 0x48, size 0x4
+    unsigned int uiContFlag;     // offset 0x4C, size 0x4
+    unsigned int MVCancelButton; // offset 0x50, size 0x4
+} RMI_WORK;
+
+typedef struct MOV_INFO
+{
+	unsigned char* mmp;        // offset 0x0, size 0x4
+    float Vol;                 // offset 0x4, size 0x4
+    float VolSpeed;            // offset 0x8, size 0x4
+    float Fade;                // offset 0xC, size 0x4
+    float FadeSpeed;           // offset 0x10, size 0x4
+    short FrameCnt;            // offset 0x14, size 0x2
+    char ExecMovieSystemFlag;  // offset 0x16, size 0x1
+    char MovieCancelFlag;      // offset 0x17, size 0x1
+    char MovieFadeFlag;        // offset 0x18, size 0x1
+    char MovieFadeMode;        // offset 0x19, size 0x1
+    char MovieSystemLastError; // offset 0x1A, size 0x1
+} MOV_INFO;
 
 typedef struct PDS_VIBPARAM_EX
 {

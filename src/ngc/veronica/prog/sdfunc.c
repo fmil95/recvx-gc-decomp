@@ -23,7 +23,11 @@ SYS_WORK* sys;
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
+MOV_INFO MovieInfo;
 int EventVibrationMode;
+int GenAdxfSlot;
+int OpenDriveTrayFlag;
+RMI_WORK rmi;
 PAD_WRK Pad[4];
 int CurrentPortId;
 PDS_VIBPARAM_EX VibP[32];
@@ -335,17 +339,101 @@ void ExitSoundProgram()
 // ExecSoundSystemMonitor 
 // RequestReadIsoFile 
 // RequestReadInsideFile 
+// fn_8015713C
 // GetIsoFileSize 
 // GetInsideFileSize 
-// GetReadFileStatus 
-// fn_80157200 
-// ExecFileManager 
+
+int GetReadFileStatus() 
+{ 
+    return FileReadStatus; 
+}
+
+void ExecFileManager()
+{
+    OpenDriveTrayFlag = CheckOpenTray();
+    
+    if (ReadFileRequestFlag != 0)
+    {
+        if (OpenDriveTrayFlag != 0)
+        {
+            StopAfsInsideFile(GenAdxfSlot);
+            
+            ReadFileRequestFlag = 0;
+            
+            FileReadStatus = -1;
+        }
+        else if ((FileReadStatus == 1) && (CheckReadEndAfsInsideFile(GenAdxfSlot) != 0)) 
+        {
+            ReadFileRequestFlag = 0;
+            
+            FileReadStatus = 0;
+        }
+    }
+}
+
 // PlayStartMovieEx 
 // PlayStopMovieEx
-// PlayStopMovie 
-// CheckPlayEndMovie 
-// GetTimeMoive 
-// WaitPrePlayMovie 
+
+void PlayStopMovie()
+{
+    PlayStopMovieEx(0);
+}
+
+int CheckPlayEndMovie()
+{
+    return MovieInfo.ExecMovieSystemFlag;
+}
+
+int GetTimeMoive()
+{
+    if (MovieInfo.ExecMovieSystemFlag != 0)
+    {
+        return GetMwPlayTimeEx();
+    }
+    
+    return 0;
+}
+
+int WaitPrePlayMovie()
+{
+    if (MovieInfo.ExecMovieSystemFlag != 0)
+    {
+        if (OpenDriveTrayFlag != 0) 
+        {
+            PlayStopMovieEx(1);
+            
+            return 3;
+        }
+        
+        if (CheckSoftResetKeyFlag(-1) != 0)
+        {
+            PlayStopMovie();
+            
+            return 3;
+        }
+        
+        if ((MovieInfo.MovieCancelFlag != 0) && ((Pad[CurrentPortId].press & 0x800))) 
+        {
+            PlayStopMovie();
+            
+            return 2;
+        }
+        
+        PlayMwMain();
+        
+        if (GetMwStatus() == MWE_PLY_STAT_PLAYING) 
+        {
+            RestartMw();
+            
+            return 0;
+        }
+        
+        return 1;
+    }
+    
+    return 0;
+}
+
 // PlayMovieMain
 
 void SetEventVibrationMode(int Mode) 
