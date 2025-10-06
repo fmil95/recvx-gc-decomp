@@ -40,6 +40,11 @@ ngc/veronica/prog/ngc_sg_syrtc.c:
 ngc/veronica/prog/ngc_sg_sytmr.c:
 	.text       start:0x800141D0 end:0x800141D4
 
+ngc/veronica/prog/adxwrap.c:
+	extab       start:0x800056B0 end:0x800057A0
+	extabindex  start:0x8000AE88 end:0x8000AFF0
+	.text       start:0x800141F8 end:0x800152F4
+
 ngc/veronica/prog/flag.c:
 	.text       start:0x8010E224 end:0x8010E28C
 

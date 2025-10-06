@@ -1,5 +1,17 @@
 #include "structs.h"
 
+int PatId[4] = { -1, -1, -1, -1 };
+AFS_PATINFO SoundAfsPatDef[8] =
+{
+    { "BGM?.AFS"    , 0, 128, NULL },
+    { "VOICE?.AFS"  , 1, 768, NULL },
+    { "MULTSPQ?.AFS", 2, 512, NULL },
+    { "ADV.AFS"     , 3, 128, NULL },
+    { "ITEM?.AFS"   , 4, 512, NULL },
+    { "MRY.AFS"     , 5, 160, NULL },
+    { "SYSTEM.AFS"  , 6, 256, NULL },
+    { NULL          , 0, 0  , NULL }
+};
 ADX_WORK AdxDef[2] = { { 2, 48000, 2, -1 }, { 1, 48000, 2, -1 } };
 int PlayerFootStepSwitch[3];
 int SystemSeSlotSwitch;
@@ -27,6 +39,10 @@ SYS_BT_SYSTEMID BootDiscSystemId;
 HWS_WORK* hws;
 SND_CMD SoundCommand;
 MOV_INFO MovieInfo;
+unsigned char* pConfigWork;
+unsigned short* pSpqList;
+unsigned char* pSoundAfs;
+char SpqFileName[32];
 int EventVibrationMode;
 CAM_WORK cam;
 NJS_POINT3 CameraPos;
@@ -58,7 +74,7 @@ int lbl_804E9764;
 // InitSoundProgram 
 // ExitSoundProgram 
 // MountSoundAfs 
-// UnmountSoundAfs
+void UnmountSoundAfs();
 // ExecSoundSynchProgram 
 // InitGameSoundSystem 
 // SearchAfsInsideFileId 
@@ -160,7 +176,7 @@ int lbl_804E9764;
 // GetInsideFileSize 
 // GetReadFileStatus 
 // fn_80157200 
-// ExecFileManager 
+void ExecFileManager();
 // PlayStartMovieEx 
 // PlayStopMovieEx
 // PlayStopMovie 
@@ -175,7 +191,7 @@ int lbl_804E9764;
 // StopVibrationEx 
 // SetAdjustDisplay 
 void RequestAdjustDisplay(int AdjustX, int AdjustY);
-// ExecAdjustDisplay 
+void ExecAdjustDisplay();
 void InitPlayLogSystem();
 void ExitPlayLogSystem();
 // ReadPlayLog 
@@ -318,10 +334,23 @@ void ExitSoundProgram()
     }
 } 
 
-// MountSoundAfs 
-// UnmountSoundAfs
-// ExecSoundSynchProgram 
-// InitGameSoundSystem 
+void* syMalloc(unsigned int nbytes); // TODO: remove this function declaration     
+// MountSoundAfs
+
+void UnmountSoundAfs()
+{ 
+    if (PatId[0] != -1) 
+    { 
+        DeletePartitionEx(SoundAfsPatDef); 
+        
+        syFree(pSoundAfs); 
+        
+        PatId[0] = PatId[1] = PatId[2] = PatId[3] = -1; 
+    }
+} 
+
+// ExecSoundSynchProgram
+// InitGameSoundSystem
 // SearchAfsInsideFileId 
 // StopThePsgSound 
 // CheckSpecialBank 

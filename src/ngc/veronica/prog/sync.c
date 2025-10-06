@@ -30,9 +30,79 @@ void bhClearVSync()
     njSetEORFunction(NULL);
 }
 
-// bhControlVSync
+void bhControlVSync()
+{
+    sys->vsyc_flg++;
+    sys->vsyc_ct++;
+    
+    if (sys->vsyc_ct >= 60) 
+    {
+        sys->vsyc_ct = 0;
+        
+        sys->gframe = sys->gfrm_ct;
+        
+        sys->gfrm_ct = 0;
+    }
+    
+    if ((sys->tk_flg & 0x80))
+    {
+        if (((sys->gm_flg & 0x80000000)) && (sys->time < 216000000))
+        {
+            sys->time++;
+        }
+        
+        if (bhCkFlg(sys->ev_flg, 3) != 0) 
+        {
+            if (sys->stv_tm < 216000000)
+            {
+                sys->stv_tm++;
+            }
+        }
+        
+        if (((sys->sp_flg & 0x200)) && (sys->evt_tim != 0)) 
+        {
+            if (fn_80183950() != 0) 
+            {
+                sys->evt_tim--;
+            }
+            
+            switch (sys->evt_tmd) 
+            {                  
+            case 1:
+                if (bhCkFlg(sys->ev_flg, 69) == 0)
+                {
+                    sys->evt_tmd = 0;
+                    sys->evt_tim = 0;
+                }
+                
+                break;
+            case 2:
+                if (bhCkFlg(sys->ev_flg, 67) == 0)
+                {
+                    sys->evt_tmd = 0;
+                    sys->evt_tim = 0;
+                }
+                
+                break;
+            case 3:
+                if (bhCkFlg(sys->ev_flg, 70) == 0) 
+                {
+                    sys->evt_tmd = 0;
+                    sys->evt_tim = 0;
+                }
+                
+                break;
+            }
+        }
+    }
+}
+
 // bhControlEOR
-// bhCheckPadPort
+
+void bhCheckPadPort()
+{
+    pd_port = 0;
+}
 
 void bhCheckSoftReset()
 {
