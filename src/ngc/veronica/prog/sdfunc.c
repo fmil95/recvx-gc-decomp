@@ -24,18 +24,29 @@ SYS_WORK* sys;
 unsigned int DiscOpenTrayFlag;
 unsigned int StatusUpdateCounter;
 SYS_BT_SYSTEMID BootDiscSystemId;
+HWS_WORK* hws;
+SND_CMD SoundCommand;
 MOV_INFO MovieInfo;
 int EventVibrationMode;
+CAM_WORK cam;
+NJS_POINT3 CameraPos;
+NJS_POINT3 PlayerPos;
+unsigned int AdxPlayFlag[2];
 BH_PWORK* plp;
 unsigned char* DestReadPtr;
 int GenAdxfSlot;
 int OpenDriveTrayFlag;
+unsigned char MovieTypeDef[22] = { 0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x80, 0x42, 0x82, 0x00, 0x80, 0x00, 0x82 };
+short MovieVolDef[22] = { 0 }; 
+MOV_DEF MovieDef[4] = { { 320, 240, 0, 0, 640, 448, 1 }, { 320, 176, 0, 64, 640, 320, 1 }, { 320, 352, 0, 64, 640, 320, 1 }, { 0, 0, 0, 0, 0, 0, 1 } };
 RMI_WORK rmi;
 PAD_WRK Pad[4];
 int CurrentPortId;
 PDS_VIBPARAM_EX VibP[32];
 char VibFlag[5] = { 0x01, 0x08, 0x80, 0x09, 0x81 };
 int SystemAdjustFlag;
+
+int lbl_804E9764;
 
 // bhReleaseFreeMemory
 // ExitApplication
@@ -163,9 +174,9 @@ int SystemAdjustFlag;
 // StopVibrationBasic 
 // StopVibrationEx 
 // SetAdjustDisplay 
-// RequestAdjustDisplay 
+void RequestAdjustDisplay(int AdjustX, int AdjustY);
 // ExecAdjustDisplay 
-// InitPlayLogSystem 
+void InitPlayLogSystem();
 void ExitPlayLogSystem();
 // ReadPlayLog 
 // WritePlayLog 
@@ -219,7 +230,71 @@ void ExitSofdecSystem()
     }
 }
 
-// InitSoundProgram 
+void InitSoundProgram()
+{
+    int i;
+
+    switch (GetBootDiscId()) 
+    {                         
+    case 0:
+        sys->ss_flg &= ~0x1;
+        break;
+    case 1:
+        sys->ss_flg |= 0x1;
+        break;
+    }
+    
+    lbl_804E9764 = 0;
+    
+    syCfgInit(NULL);
+    
+    SoundInitLevel = 2;
+    
+    for (i = 0; i < 8; i++) 
+    {
+        RegistMidiSlot(i);
+    } 
+    
+    for (i = 0; i < 20; i++)
+    {
+        RegistSeSlot(i);
+    } 
+    
+    SetFxProgram(0, 0);
+    
+    InitSofdecSystem(0);
+    
+    MovieInfo.ExecMovieSystemFlag = 0;
+    
+    SoundInitLevel = 3;
+    
+    RegistAdxStreamEx(2, 4, AdxDef);
+    
+    if (MountSoundAfs() != 0) 
+    {
+        ExitApplication();
+    }
+    
+    SoundInitLevel = 4;
+    
+    InitReadKeyEx(1);
+    
+    SetRepeatKeyTimer(5, 2);
+    
+    InitVibrationUnit();
+    InitPlayLogSystem();
+    
+    RequestAdjustDisplay(0, 0);
+    
+    ResetRoomSoundEnvParam();
+    ResetSoundComInfo();
+    
+    memset(&SoundCommand, 0, sizeof(SND_CMD));
+    
+    InitAdvSystem();
+    
+    SoundInitLevel = -1;
+}
 
 void ExitSoundProgram() 
 { 
@@ -334,12 +409,61 @@ void ExitSoundProgram()
 // ResetSoundComInfo 
 // Com_ExecRoomFadeIn 
 // Com_ExecRoomFadeOut 
-// Com_ExecCallBgm_And_BgSe 
+
+void Com_ExecCallBgm_And_BgSe()
+{
+
+}
+
 // Com_StartInitScript 
-// Com_FinishInitScript 
+
+void Com_FinishInitScript() 
+{
+
+}
+
 // ExecuteSoundCommand 
-// SendSoundCommand 
-// ExecSoundSystemMonitor 
+
+void SendSoundCommand(unsigned int CommandNo)
+{
+    if (SoundCommand.MaxCommand != 2) 
+    {
+        SoundCommand.ComTbl[SoundCommand.MaxCommand] = CommandNo;
+        
+        SoundCommand.MaxCommand++;
+        
+        ExecuteSoundCommand();
+    }
+}
+
+// TODO: need to define this file's sdata to match this function
+int GetAdxStatus(unsigned int SlotNo); // TODO: remove these two function declarations
+void StopAdx(unsigned int SlotNo);
+void ExecSoundSystemMonitor()
+{
+    int i;
+    
+    CameraPos.x = cam.wpx;
+    CameraPos.y = cam.wpy;
+    CameraPos.z = cam.wpz;
+    
+    PlayerPos.x = plp->px;
+    PlayerPos.y = plp->py;
+    PlayerPos.z = plp->pz;
+    
+    for (i = 0; i < 2; i++)
+    {
+        if ((AdxPlayFlag[i] != 0) && ((GetAdxStatus(i) == 5) || (GetAdxStatus(i) == 0)))
+        {
+            StopAdx(i);
+                
+            AdxPlayFlag[i] = 0;
+        }
+    } 
+    
+    ExecEnemySeManager();
+    ExecObjectSeManager();
+}
 
 int RequestReadIsoFile(char* FileName, void* DestPtr)
 {
@@ -455,7 +579,7 @@ void ExecFileManager()
     }
 }
 
-// PlayStartMovieEx 
+// PlayStartMovieEx
 
 void PlayStopMovieEx(int Mode)
 {
