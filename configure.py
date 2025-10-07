@@ -330,6 +330,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_syrtc.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_sytmr.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/adxwrap.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/adv.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/flag.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/game.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/pad.c"),  # needs decompiling
