@@ -102,5 +102,10 @@ ngc/veronica/prog/ngc_Ninjapad.c:
 	extabindex  start:0x800121C0 end:0x800121CC
 	.text       start:0x80179014 end:0x80179034
 
+ngc/veronica/prog/gdlib.c:
+	extab       start:0x8000A8B8 end:0x8000A8D8
+	extabindex  start:0x80012994 end:0x800129C4
+	.text       start:0x80183F10 end:0x801841C4
+
 cri/libadxe/adx_errs.c:
 	.text       start:0x8023EE58 end:0x8023F4E4

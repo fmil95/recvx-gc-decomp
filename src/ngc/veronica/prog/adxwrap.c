@@ -1,3 +1,4 @@
+#include "decls.h"
 #include "structs.h"
 
 void InitAdx();
@@ -56,7 +57,52 @@ char* rdx_files[205];
 int ADX_STREAM_BUFF_OFFSET[2] = { 0, 307456 }; 
 char ADX_STREAM_BUFFER[471040];
 
-// InitAdx
+// not present on PS2
+SYS_WORK* sys;
+AFS_PATINFO SoundAfsPatDef[8];
+int lbl_804E9908;
+
+// this function needs proper definition of the data segments of the file in order to match 
+void InitAdx()
+{
+    unsigned int i;
+    
+    fn_80246664(0);
+    
+    fn_80246764(0);
+    
+    ADXT_Init();
+    
+    ADXT_SetNumRetry(-1);
+
+    fn_80243CD0(&fn_80183894, 0);
+    
+    for (i = 0; i < 16; i++)
+    {
+        AfsInfo[i].Flag = 0;
+    }
+    
+    for (i = 0; i < 8; i++)
+    {
+        AdxFInfo[i].Flag = 0;
+    }
+    
+    for (i = 0; i < 4; i++) 
+    {
+        AdxTInfo[i].Volume = 0;
+        
+        AdxTInfo[i].LimitMaxVol = 0;
+        
+        AdxTInfo[i].FadeFunc = 0;
+        AdxTInfo[i].PanFunc = 0;
+        
+        AdxTInfo[i].Flag = 0;
+    }
+    
+    MaxAdxStreamCnt = 0;
+    
+    AdxStreamSleepFlag = 0;
+}
 
 void ExitAdx()
 { 
@@ -73,7 +119,83 @@ void DeletePartition(unsigned int PartitionId)
     }
 }
 
-// CreatePartitionEx 
+int CreatePartitionEx(AFS_PATINFO* ap)
+{ 
+	char chg_AfsFile[256];
+    int ret;
+    
+    while (TRUE) 
+    {
+        if (ap->AfsFileName != NULL) 
+        { 
+            sprintf(chg_AfsFile, "%s%s", "\\", ap->AfsFileName); 
+           
+            if (AfsInfo[ap->PartitionId].Flag == 0) 
+            { 
+                ADXF_LoadPartitionNw(ap->PartitionId, chg_AfsFile, NULL, ap->pInfoWork); 
+                
+                while (TRUE) 
+                { 
+                    ret = ADXF_GetPtStat(ap->PartitionId); 
+                    
+                    fn_80013200();
+                    
+                    njWaitVSync();
+
+                    if (ret == ADXF_STAT_READEND)
+                    {
+                        break; 
+                    }
+
+                    if (ret != ADXF_STAT_READING)
+                    {
+                        printf("adx load partition error! %s\n", chg_AfsFile);
+                        break; 
+                    }
+                } 
+                
+                AfsInfo[ap->PartitionId].Flag = 1; 
+            }
+
+            ap++; 
+        } 
+        else 
+        { 
+            break;
+        }
+    }
+    
+    if ((sys->ss_flg & 0x1) == 0) 
+    {
+        ADXF_LoadPartitionNw(17, "\\RDX_LNK.AFS", NULL, RDX_FILE_PARTISION); 
+    }
+    else
+    {
+        ADXF_LoadPartitionNw(17, "\\RDX_LNK.AFS", NULL, RDX_FILE_PARTISION);
+    }
+
+    while (TRUE) 
+    {
+        ret = ADXF_GetPtStat(17); 
+        
+        fn_80013200();
+        
+        njWaitVSync();
+
+        if (ret == ADXF_STAT_READEND) 
+        { 
+            break;
+        }
+
+        if (ret != ADXF_STAT_READING) 
+        { 
+            printf("adx load partition error! %s\n", chg_AfsFile); 
+            break; 
+        }
+    } 
+    
+    return 0; 
+} 
 
 void DeletePartitionEx(AFS_PATINFO* ap)
 {
@@ -123,7 +245,31 @@ int OpenAfsInsideFile(unsigned int PartitionId, unsigned int FileId)
     return SlotNo;
 }
 
-// OpenAfsIsoFile
+int OpenAfsIsoFile(char* FileName)
+{
+    int temp, temp2; // not from the debugging symbols
+    unsigned int SlotNo;  
+    
+    SlotNo = SearchAdxFSlot();
+    
+    AdxFInfo[SlotNo].Handle = ADXF_Open(FileName, NULL);
+    
+    if ((AdxFInfo[SlotNo].Handle == NULL) && (fn_80183D28(FileName, &temp, &temp2) != 0))
+    {
+        AdxFInfo[SlotNo].Handle = ADXF_OpenAfs(temp, temp2);
+    }
+
+    if (AdxFInfo[SlotNo].Handle != NULL) 
+    {
+        AdxFInfo[SlotNo].Mode = -1;
+    
+        AdxFInfo[SlotNo].Flag = 1;
+
+        return SlotNo;
+    }
+    
+    return -1;
+}
 
 int GetAfsInsideFileSize(int SlotNo)
 {
@@ -139,9 +285,7 @@ void RequestReadAfsInsideFile(int SlotNo, unsigned char* Address)
 {
     if (AdxFInfo[SlotNo].Flag != 0) 
     {
-        GetAfsInsideFileSize(SlotNo);
-
-        fn_80191C1C(SlotNo, Address);
+        fn_80191C1C(Address, GetAfsInsideFileSize(SlotNo));
         
         ADXF_ReadNw32(AdxFInfo[SlotNo].Handle, ADXF_GetFsizeSct(AdxFInfo[SlotNo].Handle), Address);
         
@@ -233,28 +377,46 @@ void WakeupAdxStream(ADX_WORK* pAdx)
     {
         for (i = 0; i < MaxAdxStreamCnt; i++, pAdx++) 
         {
-            AdxTInfo[i].Handle = ADXT_Create(pAdx->MaxChannel, AdxTInfo[i].pAdxTWork, AdxTInfo[i].WorkSize);
+            tp = &AdxTInfo[i];
+            
+            tp->Handle = ADXT_Create(pAdx->MaxChannel, tp->pAdxTWork, tp->WorkSize);
             
             if (pAdx->RecoverType != -1) 
             {
-                ADXT_SetAutoRcvr(AdxTInfo[i].Handle, pAdx->RecoverType);
+                ADXT_SetAutoRcvr(tp->Handle, pAdx->RecoverType);
             }
             
             if (pAdx->ReloadSector >= 0) 
             {
-                ADXT_SetReloadSct(AdxTInfo[i].Handle, pAdx->ReloadSector);
+                ADXT_SetReloadSct(tp->Handle, pAdx->ReloadSector);
             }
             
-            AdxTInfo[i].FadeFunc = 0;
+            tp->FadeFunc = 0;
             
-            AdxTInfo[i].Flag = 0;
+            tp->Flag = 0;
         }
         
         AdxStreamSleepFlag = 0;
     }
 }
 
-// PlayAdxEx
+// TODO: find the correct string to be on OSReport
+void PlayAdxEx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId, int Flag)
+{
+    if (Flag != 0)
+    {
+        PauseAdx(SlotNo);
+    }
+    
+    ADXT_StartAfs(AdxTInfo[SlotNo].Handle, PartitionId, FileId);
+
+    AdxTInfo[SlotNo].Flag = 1;
+
+    if (lbl_804E9908 != 0) 
+    {
+        OSReport("placeholder", SlotNo, SoundAfsPatDef[PartitionId].AfsFileName, FileId, Flag);
+    }
+}
 
 void PlayAdx(unsigned int SlotNo, unsigned int PartitionId, unsigned int FileId)
 { 
@@ -432,4 +594,63 @@ void RequestAdxFadeFunctionEx(int SlotNo, int StartVol, int LastVol, int Frame)
     tp->FadeFunc = 1;
 }
 
-// ExecAdxFadeManager
+int ExecAdxFadeManager()
+{
+    int i;         
+    int ReturnCode; 
+    ADXT_INFO* tp;  
+    
+    ReturnCode = 0;
+    
+    for (i = 0; i < 4; i++)
+    {
+        tp = &AdxTInfo[i];
+        
+        if (tp->FadeFunc != 0) 
+        {
+            tp->Volume -= tp->VolSpeed;
+            
+            tp->FadeCntMax--;
+            
+            if (tp->FadeCntMax < 0) 
+            {
+                tp->Volume = tp->VolLast;
+                
+                if ((int)tp->Volume == -127) 
+                {
+                    StopAdx(i);
+                }
+                
+                tp->FadeFunc = 0;
+            } 
+            else
+            {
+                ReturnCode = 1;
+            }
+            
+            SetVolumeAdx2(i, tp->Volume);
+        }
+        
+        if (tp->PanFunc != 0)
+        {
+            tp->Pan -= tp->PanSpeed;
+            
+            tp->PanCntMax--;
+            
+            if (tp->PanCntMax < 0) 
+            {
+                tp->Pan = tp->PanLast;
+                
+                tp->PanFunc = 0;
+            }
+            else 
+            {
+                ReturnCode = 1;
+            }
+            
+            SetPanAdx2(i, 0, tp->Pan);
+        }
+    } 
+    
+    return ReturnCode;
+}

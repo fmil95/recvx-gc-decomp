@@ -7,6 +7,7 @@
 #include <sg_pdvib.h>
 #include <sg_mwply.h>
 #include <sfd_mw.h>
+#include <sg_gd.h>
 #include <cri_adxf.h>
 #include <cri_adxt.h>
 
@@ -87,6 +88,13 @@ typedef struct PRM_INFO
     int latency; // offset 0xC, size 0x4
     int rsv[4];  // offset 0x10, size 0x10
 } PRM_INFO;
+
+typedef struct LFOPEN_INFO
+{
+	// total size: 0x8
+    unsigned int Flag; // offset 0x0, size 0x4
+    GDFS GdFs;         // offset 0x4, size 0x4
+} LFOPEN_INFO;
 
 typedef struct HWS_WORK
 {
