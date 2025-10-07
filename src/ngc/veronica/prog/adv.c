@@ -658,3 +658,31 @@ void DefaultSetOption()
     
     SetUseVibrationUnit(sys->vibration); 
 }
+
+void FlushPlate() 
+{ 
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork;
+
+    ap->FlushCount2 += ap->FlushSpeed2; 
+    
+    if (ap->FlushSpeed2 < 0) 
+    { 
+        if (ap->FlushCount2 <= -64.0f)
+        { 
+            ap->FlushCount2 = -64.0f; 
+            ap->FlushSpeed2 = 2.0f;
+        }
+    } 
+    else if (ap->FlushCount2 >= 0) 
+    { 
+        ap->FlushCount2 = 0;
+        ap->FlushSpeed2 = -2.0f; 
+    }
+
+    ap->FontBaseColor = (unsigned int)ap->FlushCount2 + 255; 
+    
+    ap->FontBaseColor |= ((unsigned int)ap->FlushCount2 + 255) << 16;
+    ap->FontBaseColor |= ((unsigned int)ap->FlushCount2 + 255) << 8;
+} 
