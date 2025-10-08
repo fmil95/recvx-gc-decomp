@@ -1,20 +1,4 @@
-#include <sg_xpt.h>
-
-// TODO: move the struct below elsewhere
-
-typedef struct 
-{
-	Uint8 unit;                        
-	Uint8 flag;                       
-	Sint8 power;                     
-	Uint8 freq;                         
-	Uint8 inc;                        
-	Uint8 reserved[3];               
-} PDS_VIBPARAM;
-
-char PortIdTbl[/*4*/] = {2, 8, 14, 20, 0, 0, 0, 0};
-int EnadleVibrationFlag;
-unsigned int VibStopTime;
+#include "structs.h"
 
 void InitVibrationUnit();
 void ExitVibrationUnit();
@@ -23,6 +7,10 @@ int GetUseVibrationUnit();
 int CheckVibrationUnit(unsigned int PortId);
 int StartVibration(unsigned int PortId, PDS_VIBPARAM* vpp);
 int StopVibration(unsigned int PortId);
+
+char PortIdTbl[/*4*/] = { 2, 8, 14, 20, 0, 0, 0, 0 };
+int EnadleVibrationFlag;
+unsigned int VibStopTime;
 
 void InitVibrationUnit()
 { 

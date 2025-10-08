@@ -293,7 +293,7 @@ void AdvPushPaletteData()
 
     temp = (ADV_WORK*)&AdvWork;
     
-    njMemCopy4(&palbuf[1536], palbuf, 1024); 
+    fn_80013128(&palbuf[1536], palbuf, 1024); 
     
     temp->PalMode = njGetPaletteMode(); 
 }
@@ -306,7 +306,7 @@ void AdvPopPaletteData()
     
     njSetPaletteMode(temp->PalMode); 
     
-    njMemCopy4(palbuf, &palbuf[1536], 1024); 
+    fn_80013128(palbuf, &palbuf[1536], 1024); 
     
     sys->gm_flg |= 0x4; 
     
