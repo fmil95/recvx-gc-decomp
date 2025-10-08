@@ -115,5 +115,8 @@ ngc/veronica/prog/gdlib.c:
 	extabindex  start:0x80012994 end:0x800129C4
 	.text       start:0x80183F10 end:0x801841C4
 
+ngc/veronica/prog/ngc_NaDebugFontFunction.c:
+	.text       start:0x801CC168 end:0x801CC650
+
 cri/libadxe/adx_errs.c:
 	.text       start:0x8023EE58 end:0x8023F4E4
