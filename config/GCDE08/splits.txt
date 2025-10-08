@@ -110,6 +110,11 @@ ngc/veronica/prog/ngc_Ninjapad.c:
 	extabindex  start:0x800121C0 end:0x800121CC
 	.text       start:0x80179014 end:0x80179034
 
+ngc/veronica/prog/main.c:
+	extab       start:0x8000A410 end:0x8000A428
+	extabindex  start:0x80012298 end:0x800122BC
+	.text       start:0x80179C10 end:0x80179F90
+
 ngc/veronica/prog/gdlib.c:
 	extab       start:0x8000A8B8 end:0x8000A8D8
 	extabindex  start:0x80012994 end:0x800129C4
