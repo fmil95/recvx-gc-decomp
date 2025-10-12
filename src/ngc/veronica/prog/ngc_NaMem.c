@@ -1,8 +1,4 @@
-#include "structs.h"
-
-void	njMemCopy(  void *dst, const void *src, Sint32 num );
-void	njMemCopy4( void *dst, const void *src, Sint32 num );
-void	fn_80013128( void *dst, const void *src, Sint32 num );
+#include "ngc/veronica/prog/ngc_NaMem.h"
 
 void	njMemCopy(  void *dst, const void *src, Sint32 num )
 { 

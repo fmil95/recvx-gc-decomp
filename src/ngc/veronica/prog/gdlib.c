@@ -1,6 +1,8 @@
 #include "structs.h"
 
-void LfInitLib();
+// this file differs drastically from PS2, it does not call any functions from sg_gd.h and even calls some CRI ADX ones  
+
+unsigned int LfInitLib(int arg0);
 void CallbackGdErrorFunc(int param, int err);
 unsigned int InitGdSystem();
 unsigned int InitGdSystemEx(unsigned int MaxDirNum);
@@ -27,22 +29,24 @@ GDFS LfGdFs;
 
 unsigned short MaxDirectoryEntry[1]; // find out actual size
 
-void LfInitLib() 
+unsigned int LfInitLib(int arg0) 
 {
-    unsigned int i;
-    
-    for (i = 0; i < 14; i++) 
-    { 
-        LfOpenInfo[i].Flag = 0; 
-    } 
+    if (arg0 < 0)
+    {
+        return 65535;
+    }
+
+    if (arg0 >= 3) 
+    {
+        return 65535;
+    }
+
+    return MaxDirectoryEntry[arg0];
 } 
 
 void CallbackGdErrorFunc(int param, int err) // first parameter is not present on the debugging symbols
 {
-    if ((err == -23) || (err == -33)) 
-    { 
-        GdErrorFlag = 1; 
-    }
+    LfInitLib(0);
 }
 
 unsigned int InitGdSystem() 

@@ -1,9 +1,4 @@
-#include "structs.h"
-
-// TODO: move the typedef below elsewhere
-typedef PDS_PERIPHERAL NJS_PERIPHERAL;
-
-const NJS_PERIPHERAL* njGetPeripheral(Uint32 port);
+#include "ngc/veronica/prog/ngc_Ninjapad.h"
 
 const NJS_PERIPHERAL* njGetPeripheral(Uint32 port)
 { 
