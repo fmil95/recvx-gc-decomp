@@ -1,6 +1,4 @@
-void bhStFlg(unsigned int* flg, unsigned int bit);
-void bhCrFlg(unsigned int* flg, unsigned int bit);
-int bhCkFlg(unsigned int* flg, unsigned int bit);
+#include "ngc/veronica/prog/flag.h"
 
 void bhStFlg(unsigned int* flg, unsigned int bit)
 {
