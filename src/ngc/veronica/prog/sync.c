@@ -1,15 +1,16 @@
 #include "structs.h"
 
-SYS_WORK* sys;
 int OpenDriveTrayFlag;
-// TODO: import structs for the two variables below
-//ROM_WORK* rom; 
-//CAM_WORK cam;
+ROM_WORK* rom;
+CAM_WORK cam;
 unsigned char BackColorFlag;
 int pd_port;
 unsigned int palbuf[4096];
 unsigned char Pause_Flag;
 int SoftResetFlag;
+
+// TODO: import this variable from its original file
+SYS_WORK* sys;
 
 void bhInitVSync();
 void bhClearVSync();

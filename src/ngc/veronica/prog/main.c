@@ -56,7 +56,8 @@ unsigned int Ps2_sys_cnt;
 ROM_WORK romp;
 ROM_WORK* rom = &romp;
 
-// 100% matching!
+unsigned int lbl_804E97B4;
+
 void* syMalloc(unsigned int nbytes); // TODO: remove this function declaration   
 void njUserInit(void)
 { 
@@ -158,12 +159,24 @@ void njUserInit(void)
     Init_Expand(); 
 }
 
-// 100% matching!
 Sint32 njUserMain(void) 
 { 
     int i; 
 
-    Ps2_sys_cnt++; 
+    lbl_804E97B4++; 
+
+    fn_8017DCAC();
+
+    fn_80013200();
+
+    fn_80185DF0();
+
+    fn_801ACDB4();
+
+    if (fn_80183950() == 0) 
+    {
+        return fn_8017C34C();
+    }
   
     for (i = 0; i < 23; i++) 
     { 
@@ -173,14 +186,16 @@ Sint32 njUserMain(void)
         } 
     } 
     
-    PS2_jikken(); 
+    if (fn_8017C34C() == -1) 
+    {
+        return fn_8017C34C();
+    }
     
     bhCheckSoftReset(); 
     
     return 0; 
 } 
 
-// 100% matching!
 void njUserExit(void)
 { 
     ExitSoundProgram();
