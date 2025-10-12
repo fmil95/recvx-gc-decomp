@@ -1,12 +1,4 @@
-#include "structs.h"
-
-void InitVibrationUnit();
-void ExitVibrationUnit();
-void SetUseVibrationUnit(int Flag);
-int GetUseVibrationUnit();
-int CheckVibrationUnit(unsigned int PortId);
-int StartVibration(unsigned int PortId, PDS_VIBPARAM* vpp);
-int StopVibration(unsigned int PortId);
+#include "ngc/veronica/prog/vibman.h"
 
 char PortIdTbl[/*4*/] = { 2, 8, 14, 20, 0, 0, 0, 0 };
 int EnadleVibrationFlag;
