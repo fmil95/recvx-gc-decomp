@@ -9,7 +9,7 @@ int GetFileSize(char* FileName);
 int ReadFileEx(char* FileName, void* ReadAddress);
 unsigned int CheckOpenTray();
 
-unsigned int MaxDirectoryEntry = 512;
+//unsigned int MaxDirectoryEntry = 512;
 unsigned int DiscOpenTrayFlag;
 unsigned int NewDiscCheckSw;
 unsigned int GdErrorFlag;
@@ -24,6 +24,8 @@ GDFS CurrentGdFs;
 GDFS CurrentGdFsBuf;
 unsigned int StatusUpdateCounter;
 GDFS LfGdFs;
+
+unsigned short MaxDirectoryEntry[1]; // find out actual size
 
 void LfInitLib() 
 {
@@ -50,7 +52,14 @@ unsigned int InitGdSystem()
 
 unsigned int InitGdSystemEx(unsigned int MaxDirNum)
 {
-    MaxDirectoryEntry = MaxDirNum; 
+    int i;
+
+    for (i = 0; i < 3; i++) 
+    {
+        MaxDirectoryEntry[i] = 65535;
+    } 
+    
+    return 0;
 }
 
 void ExitGdSystem() 

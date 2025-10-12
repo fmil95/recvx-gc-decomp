@@ -265,7 +265,7 @@ void AdvPushRoomTexture()
     { 
         ap->SysMemPtr = sys->memp; 
         
-        bhCopyTexmem2MainmemSub(rom->mdl.texP, (char*)sys->memp); 
+        fn_8016D5DC(); 
         
         ap->TexFlag = 1; 
     }
