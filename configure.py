@@ -377,6 +377,7 @@ config.libs = [
         "progress_category": "criware",  # str | List[str]
         "objects": [
             Object(NonMatching, "cri/libadxe/adx_errs.c"),
+            Object(NonMatching, "cri/libadxe/adx_tlk.c"),
         ],
     },
 ]
