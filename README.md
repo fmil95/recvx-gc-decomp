@@ -20,7 +20,7 @@ Replace with your Discord server's ID and invite URL.
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/hKx3FJJgrV
 
-A work-in-progress decompilation of Resident Evil - Code: Veronica X.
+A work-in-progress decompilation of Resident Evil - Code: Veronica X for the GameCube, meant to be complementary to the [decompilation of the PS2 version](https://github.com/fmil95/recvx-decomp) of the game.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
