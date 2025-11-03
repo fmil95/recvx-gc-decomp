@@ -132,4 +132,4 @@ cri/libadxe/adx_errs.c:
 	.text       start:0x8023EE58 end:0x8023F4E4
 
 cri/libadxe/adx_tlk.c:
-	.text       start:0x80243FF4 end:0x8024408C
+	.text       start:0x80243D38 end:0x802452B0
