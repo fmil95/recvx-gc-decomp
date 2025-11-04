@@ -379,6 +379,7 @@ config.libs = [
             Object(NonMatching, "cri/libadxe/adx_crs.c"),
             Object(NonMatching, "cri/libadxe/adx_errs.c"),
             Object(NonMatching, "cri/libadxe/adx_tlk.c"),
+            Object(NonMatching, "cri/libadxe/adx_rnap.c"),
         ],
     },
 ]

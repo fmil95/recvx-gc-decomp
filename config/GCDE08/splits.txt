@@ -134,6 +134,10 @@ cri/libadxe/adx_crs.c:
 
 cri/libadxe/adx_errs.c:
 	.text       start:0x8023EE58 end:0x8023F4E4
+	.bss        start:0x804D0A88 end:0x804D0A90
 
 cri/libadxe/adx_tlk.c:
 	.text       start:0x80242544 end:0x802452B0
+
+cri/libadxe/adx_rnap.c:
+	.text       start:0x80246EA8 end:0x80246F88
