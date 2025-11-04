@@ -1,5 +1,46 @@
 #include <cri_adxt.h>
 
+void fn_802438C8(void) 
+{
+
+}
+
+// fn_802438CC
+// fn_80243900
+// fn_80243920
+// fn_80243AA0
+// fn_80243AD0
+
+void ADXT_SetTimeOfst(ADXT adxt, Sint32 ofst)
+{
+    adxt->time_ofst = ofst;
+}
+
+// fn_80243B6C
+// fn_80243CD0
+
+void fn_80243CF0(void) 
+{
+
+}
+
+void fn_80243CF4(void) 
+{
+
+}
+
+Sint32 ADXT_GetStatPause(ADXT adxt)
+{
+    if (adxt == NULL) 
+    {
+        ADXERR_CallErrFunc1((const Sint8*)"placeholder");
+
+        return ADXT_ERR_OK;
+    }
+
+    return adxt->pause_flag;
+}
+
 // ADXT_Pause
 
 Sint32 ADXT_GetErrCode(ADXT adxt)
