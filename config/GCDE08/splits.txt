@@ -128,6 +128,10 @@ ngc/veronica/prog/gdlib.c:
 ngc/veronica/prog/ngc_NaDebugFontFunction.c:
 	.text       start:0x801CC168 end:0x801CC650
 
+cri/libadxe/adx_crs.c:
+	.text       start:0x8023E580 end:0x8023E5D0
+	.bss        start:0x804D0A78 end:0x804D0A88
+
 cri/libadxe/adx_errs.c:
 	.text       start:0x8023EE58 end:0x8023F4E4
 
