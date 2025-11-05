@@ -140,4 +140,4 @@ cri/libadxe/adx_tlk.c:
 	.text       start:0x80242544 end:0x802452B0
 
 cri/libadxe/adx_rnap.c:
-	.text       start:0x80246EA8 end:0x80246F88
+	.text       start:0x80246E44 end:0x8024706C

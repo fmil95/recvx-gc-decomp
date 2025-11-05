@@ -1,4 +1,4 @@
-#include <cri_xpt.h>
+#include "cri/libadxe/adx_crs.h"
 
 Sint32 adxcrs_lvl;
 Sint32 adxcrs_msk;
