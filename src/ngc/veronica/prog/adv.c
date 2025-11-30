@@ -659,6 +659,16 @@ void DefaultSetOption()
     SetUseVibrationUnit(sys->vibration); 
 }
 
+void ResetFlushPlate() 
+{
+    ADV_WORK* ap; 
+
+    ap = (ADV_WORK*)&AdvWork;
+    
+    ap->FlushSpeed2 = 0; 
+    ap->FlushCount2 = 0; 
+}
+
 void FlushPlate() 
 { 
     ADV_WORK* ap; 
