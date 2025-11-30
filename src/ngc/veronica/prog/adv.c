@@ -696,3 +696,8 @@ void FlushPlate()
     ap->FontBaseColor |= ((unsigned int)ap->FlushCount2 + 255) << 16;
     ap->FontBaseColor |= ((unsigned int)ap->FlushCount2 + 255) << 8;
 } 
+
+int Adv_SoundMuseum()
+{ 
+    return 1;
+} 
