@@ -83,6 +83,11 @@ ngc/veronica/prog/sbinit.c:
 	extabindex  start:0x80010DE0 end:0x80010DF8
 	.text       start:0x8014EA24 end:0x8014EB14
 
+ngc/veronica/prog/sdc.c:
+	extab       start:0x800096B0 end:0x80009830
+	extabindex  start:0x80010E88 end:0x800110C8
+	.text       start:0x80150E2C end:0x80152748
+
 ngc/veronica/prog/sdfunc.c:
 	extab       start:0x80009840 end:0x80009B58
 	extabindex  start:0x800110E0 end:0x80011584
