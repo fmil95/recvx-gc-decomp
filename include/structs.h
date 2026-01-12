@@ -11,6 +11,26 @@
 #include <cri_adxf.h>
 #include <cri_adxt.h>
 
+typedef struct O_WORK
+{
+	// total size: 0x50
+    unsigned int flg;      // offset 0x0, size 0x4
+    int dmy;               // offset 0x4, size 0x4
+    unsigned int dummy[2]; // offset 0x8, size 0x8
+    float mtx[16];         // offset 0x10, size 0x40
+} O_WORK;
+
+typedef struct ML_WORK
+{
+	// total size: 0x18
+    unsigned int flg;     // offset 0x0, size 0x4
+    unsigned int obj_num; // offset 0x4, size 0x4
+    void* datP;           // offset 0x8, size 0x4
+	NJS_CNK_OBJECT* objP; // offset 0xC, size 0x4
+	NJS_TEXLIST* texP;    // offset 0x10, size 0x4
+	O_WORK* owP;          // offset 0x14, size 0x4
+} ML_WORK;
+
 typedef struct AFS_INFO
 {
 	// total size: 0xC
