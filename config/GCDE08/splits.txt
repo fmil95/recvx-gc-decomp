@@ -53,6 +53,11 @@ ngc/veronica/prog/adv.c:
 	extabindex  start:0x8000AFF0 end:0x8000B350
 	.text       start:0x800152F4 end:0x8001B9B0
 
+ngc/veronica/prog/binfunc.c:
+	extab       start:0x800059E0 end:0x800059E8
+	extabindex  start:0x8000B350 end:0x8000B35C
+	.text       start:0x8001B9B0 end:0x8001BD94
+
 ngc/veronica/prog/dread.c:
 	extab       start:0x80005BF0 end:0x80005C08
 	extabindex  start:0x8000B668 end:0x8000B68C
