@@ -340,6 +340,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/pad.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/padman.c"),  # functions matched, but there is extra bss
             Object(NonMatching, "ngc/veronica/prog/sbinit.c"),  # functions matched, but sbss is undefined
+            Object(NonMatching, "ngc/veronica/prog/screen.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sdc.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sdfunc.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sync.c"),  # needs decompiling

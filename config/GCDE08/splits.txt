@@ -93,6 +93,11 @@ ngc/veronica/prog/sbinit.c:
 	extabindex  start:0x80010DE0 end:0x80010DF8
 	.text       start:0x8014EA24 end:0x8014EB14
 
+ngc/veronica/prog/screen.c:
+	extab       start:0x80009650 end:0x800096B0
+	extabindex  start:0x80010DF8 end:0x80010E88
+	.text       start:0x8014EB14 end:0x80150E2C
+
 ngc/veronica/prog/sdc.c:
 	extab       start:0x800096B0 end:0x80009830
 	extabindex  start:0x80010E88 end:0x800110C8
