@@ -1,0 +1,12 @@
+// void bhSetMessage
+// void bhControlMessage
+// void bhDispFont
+// void bhDispFontEx
+// int bhDispItemName
+// int bhDispMessage
+// int bhDispMessageEx
+// void bhDispTime
+// void bhDispTimeEx
+// float bhGetFontSize
+// float bhMesLen
+// void bhFontScaleSet

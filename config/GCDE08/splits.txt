@@ -71,6 +71,11 @@ ngc/veronica/prog/game.c:
 	extabindex  start:0x8000FE80 end:0x8000FEB0
 	.text       start:0x8010E28C end:0x8010F6D0
 
+ngc/veronica/prog/message.c:
+	extab       start:0x80008FE8 end:0x80009040
+	extabindex  start:0x8001045C end:0x800104E0
+	.text       start:0x8012608C end:0x80127D58
+
 ngc/veronica/prog/njloop.c:
 	extab       start:0x80009108 end:0x80009110
 	extabindex  start:0x8001060C end:0x80010618
