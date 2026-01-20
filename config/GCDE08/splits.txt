@@ -150,6 +150,11 @@ ngc/veronica/prog/main.c:
 	extabindex  start:0x80012298 end:0x800122BC
 	.text       start:0x80179C10 end:0x80179F90
 
+ngc/veronica/prog/ngc_sg_sd.c:
+	extab       start:0x8000A430 end:0x8000A508
+	extabindex  start:0x800122C8 end:0x8001240C
+	.text       start:0x8017A340 end:0x8017C238
+
 ngc/veronica/prog/gdlib.c:
 	extab       start:0x8000A8B8 end:0x8000A8D8
 	extabindex  start:0x80012994 end:0x800129C4
