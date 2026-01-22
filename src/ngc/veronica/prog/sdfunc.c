@@ -44,7 +44,7 @@ unsigned short* pSpqList;
 unsigned char* pSoundAfs;
 char SpqFileName[32];
 int EventVibrationMode;
-CAM_WORK cam;
+extern CAM_WORK cam;
 NJS_POINT3 CameraPos;
 NJS_POINT3 PlayerPos;
 unsigned int AdxPlayFlag[2];

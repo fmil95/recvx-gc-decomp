@@ -50,7 +50,7 @@ int AdxStreamSleepFlag;
 int MaxAdxStreamCnt;
 ADXT_INFO AdxTInfo[4];
 ADXF_INFO AdxFInfo[8];
-AFS_INFO AfsInfo[16];
+extern AFS_INFO AfsInfo[16];
 unsigned char RDX_FILE_PARTISION[880];
 int rdx_image_data_max = 205;
 char* rdx_files[205];
