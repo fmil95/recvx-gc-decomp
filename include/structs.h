@@ -878,6 +878,37 @@ typedef struct SYS_WORK
     float sfct;                      // offset 0x2ACEC, size 0x4
 } SYS_WORK;
 
+typedef struct HWS_WORK
+{
+	// total size: 0x24
+    int mode;      // offset 0x0, size 0x4
+    int frame;     // offset 0x4, size 0x4
+    int count;     // offset 0x8, size 0x4
+    int vtx_opq_a; // offset 0xC, size 0x4
+    int vtx_opq_b; // offset 0x10, size 0x4
+    int vtx_trs_a; // offset 0x14, size 0x4
+    int vtx_trs_b; // offset 0x18, size 0x4
+    int vtx_punch; // offset 0x1C, size 0x4
+    int vtx_total; // offset 0x20, size 0x4
+} HWS_WORK;
+
+typedef struct EVT_WORK
+{
+	// total size: 0xC
+    unsigned short* scd0; // offset 0x0, size 0x4
+    unsigned short* scd1; // offset 0x4, size 0x4
+    unsigned short* evd;  // offset 0x8, size 0x4
+} EVT_WORK;
+
+typedef struct NJS_POINT4
+{
+	// total size: 0x10
+    float x; // offset 0x0, size 0x4
+    float y; // offset 0x4, size 0x4
+    float z; // offset 0x8, size 0x4
+    float w; // offset 0xC, size 0x4
+} NJS_POINT4; 
+
 typedef struct AFS_INFO
 {
 	// total size: 0xC
@@ -1041,20 +1072,6 @@ typedef struct ADV_VM_MSG
     int NaviMsgNo;  // offset 0xC, size 0x4
     int MsgType;    // offset 0x10, size 0x4
 } ADV_VM_MSG;
-
-typedef struct HWS_WORK
-{
-	// total size: 0x24
-    int mode;      // offset 0x0, size 0x4
-    int frame;     // offset 0x4, size 0x4
-    int count;     // offset 0x8, size 0x4
-    int vtx_opq_a; // offset 0xC, size 0x4
-    int vtx_opq_b; // offset 0x10, size 0x4
-    int vtx_trs_a; // offset 0x14, size 0x4
-    int vtx_trs_b; // offset 0x18, size 0x4
-    int vtx_punch; // offset 0x1C, size 0x4
-    int vtx_total; // offset 0x20, size 0x4
-} HWS_WORK;
 
 typedef struct CAM_WORK 
 {
@@ -1229,278 +1246,6 @@ typedef struct PAD_WRK
 
 // the structs below need polishing
 
-typedef struct NO_NAME_3
-{
-	unsigned int flg;
-	unsigned int obj_num;
-	unsigned int frm_num;
-	void* datP;
-	NJS_MDATA2* md2P;
-	unsigned short* atrP;
-} NO_NAME_3;
-
-typedef struct NO_NAME_4
-{
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	char flr_no;
-	char flr_nob;
-	unsigned char mdlver;
-	unsigned char param;
-	unsigned char mode0;
-	unsigned char mode1;
-	unsigned char mode2;
-	unsigned char mode3;
-	float px;
-	float py;
-	float pz;
-	int ax;
-	int ay;
-	int az;
-	float ar;
-	float aw;
-	float ah;
-	float ad;
-	float car;
-	float cah;
-	float pxb;
-	float pyb;
-	float pzb;
-	int axb;
-	int ayb;
-	int azb;
-	float gpx;
-	float gpy;
-	float gpz;
-	float lox;
-	float loy;
-	float loz;
-	float aox;
-	float aoy;
-	float aoz;
-	float spd;
-	unsigned int flg2;
-	unsigned int mdflg;
-	unsigned int stflg;
-	unsigned int Dummy3;
-	int draw_tp;
-	int mdl_n;
-	void* mskp;
-	unsigned int Dummy[1];
-	int* skp[16];
-	NJS_CNK_OBJECT* mbp[16];
-	NJS_TEXLIST* txp[16];
-	ML_WORK mdl[16];
-	ML_WORK* mlwP;
-	unsigned int mdl_no;
-	int lkono;
-	unsigned char* lkwkp;
-	unsigned char* exp0;
-	unsigned char* exp1;
-	unsigned char* exp2;
-	unsigned char* exp3;
-	unsigned char mtxbuf[64];
-	float mtx[16];
-	NJS_CNK_OBJECT* obj_a;
-	NJS_CNK_OBJECT* obj_b;
-	float shp_ct;
-	char clp_jno[8];
-	int lok_jno;
-	NO_NAME_3* mnwP;
-	NO_NAME_3* mnwPb;
-	unsigned int mtn_attr;
-	unsigned int mtn_no;
-	int frm_no;
-	unsigned int frm_mode;
-	int hokan_rate;
-	unsigned int hokan_count;
-	unsigned int hokan_ctbak;
-	int mtn_add;
-	unsigned int mtn_md;
-	unsigned char* mtn_tp;
-	int axp;
-	int ayp;
-	int azp;
-	short psh_ct;
-	short psh_idx;
-	int idx_ct;
-	int mtn_chk;
-	float ofx;
-	float ofy;
-	float ofz;
-	float sx;
-	float sy;
-	float sz;
-	float sxb;
-	float syb;
-	float szb;
-	float xn;
-	float yn;
-	float zn;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
-	unsigned char* objbak;
-	NJS_SPHERE cspr;
-	int pn;
-	NJS_POLYGON_VTX* pvp;
-	NJS_TEXTURE_VTX* tvp;
-	NJS_POLYGON_VTX pv[4];
-	NJS_TEXTURE_VTX tv[4];
-	int bl_src;
-	int bl_dst;
-	int ani_ct;
-	int tex_id;
-	int aspd;
-	unsigned int gidx;
-	int bank;
-	char jno[16];
-	char hide[4];
-	void(*func)(void*);
-	int idx;
-	int Dummy2;
-} NO_NAME_4;
-
-typedef struct NO_NAME_5
-{
-	unsigned char* adr;
-	unsigned int gidx;
-	unsigned int attr;
-	unsigned int w;
-	unsigned int h;
-} NO_NAME_5;
-
-typedef struct NO_NAME_6
-{
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	short flr_no;
-	unsigned short mdlver;
-	float px;
-	float py;
-	float pz;
-	float sx;
-	float sy;
-	float sz;
-	short ay;
-	short ax;
-} NO_NAME_6;
-
-typedef struct NO_NAME_7
-{
-	short jnt_a;
-	short jnt_b;
-	int cap_r;
-} NO_NAME_7;
-
-typedef struct NO_NAME_8
-{
-	unsigned int flg;
-	unsigned int type;
-	int aspd;
-	int lkflg;
-	int lkno;
-	int lkono;
-	int lsrc;
-	float px;
-	float py;
-	float pz;
-	float lx;
-	float ly;
-	float lz;
-	float vx;
-	float vy;
-	float vz;
-	float spc;
-	float dif;
-	float amb;
-	float r;
-	float g;
-	float b;
-	float nr;
-	float fr;
-	int iang;
-	int oang;
-	int ax;
-	int ay;
-	int az;
-	unsigned int mode;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
-	float wpx;
-	float wpy;
-	float wpz;
-	float wvx;
-	float wvy;
-	float wvz;
-	float wspc;
-	float wdif;
-	float wamb;
-	float wr;
-	float wg;
-	float wb;
-	float wnr;
-	float wfr;
-	int wiang;
-	int woang;
-	int wax;
-	int way;
-	int waz;
-	unsigned char* lkwkp;
-	unsigned char* exp;
-	NJS_LIGHT_PTR* light;
-} NO_NAME_8;
-
-typedef struct NO_NAME_9
-{
-	NJS_POINT3 ps;
-	float nr;
-	float fr;
-	float cr;
-	float cg;
-	float cb;
-} NO_NAME_9;
-
-typedef struct NO_NAME_10
-{
-	unsigned char flg;
-	unsigned char type;
-	unsigned char id;
-	char flr_no;
-	unsigned int attr;
-	float px;
-	float py;
-	float pz;
-	float w;
-	float h;
-	float d;
-	unsigned char prm0;
-	unsigned char prm1;
-	unsigned char prm2;
-	unsigned char prm3;
-} NO_NAME_10; 
-
-// similar but not quite like NJS_CAPSULE
-typedef struct CONICAL_FRUSTUM
-{
-	NJS_POINT3 c1;
-	NJS_POINT3 c2;
-	float r1;
-	float r2;
-} CONICAL_FRUSTUM;
-
-typedef struct NO_NAME_12
-{
-	unsigned short* scd0;
-	unsigned short* scd1;
-	unsigned short* evd;
-} NO_NAME_12;
-
 typedef struct CAM_KEYF_WORK
 {
 	// total size: 0x80
@@ -1668,21 +1413,21 @@ typedef struct ROM_WORK
 {
     // total size: 0x3EC
 	NO_NAME_25* cutp; // offset 0x0, size 0x4
-	NO_NAME_8* lgtp; // offset 0x4, size 0x4
+	LGT_WORK* lgtp; // offset 0x4, size 0x4
 	NO_NAME_26* enep; // offset 0x8, size 0x4
 	NO_NAME_26* objp; // offset 0xC, size 0x4
 	NO_NAME_26* itmp; // offset 0x10, size 0x4
 	NO_NAME_27* effp; // offset 0x14, size 0x4
-	NO_NAME_10* walp; // offset 0x18, size 0x4
-	NO_NAME_10* etcp; // offset 0x1C, size 0x4
-	NO_NAME_10* flrp; // offset 0x20, size 0x4
+	ATR_WORK* walp; // offset 0x18, size 0x4
+	ATR_WORK* etcp; // offset 0x1C, size 0x4
+	ATR_WORK* flrp; // offset 0x20, size 0x4
 	NO_NAME_28* posp; // offset 0x24, size 0x4
-	NO_NAME_10* rutp; // offset 0x28, size 0x4
+	ATR_WORK* rutp; // offset 0x28, size 0x4
 	unsigned char* ruttp; // offset 0x2C, size 0x4
-	NO_NAME_12* evtp; // offset 0x30, size 0x4
+	EVT_WORK* evtp; // offset 0x30, size 0x4
 	NO_NAME_22* evcp; // offset 0x34, size 0x4
 	unsigned int* mesp; // offset 0x38, size 0x4
-	NO_NAME_8* evlp; // offset 0x3C, size 0x4
+	LGT_WORK* evlp; // offset 0x3C, size 0x4
 	unsigned char* dmp00; // offset 0x40, size 0x4
     unsigned char* dmp01; // offset 0x44, size 0x4
     unsigned char* dmp02; // offset 0x48, size 0x4
