@@ -353,6 +353,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/ngc_Ninjapad.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/main.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ngc_sg_sd.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/ngc_event.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/gdlib.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ngc_NaDebugFontFunction.c"),  # needs decompiling
         ],

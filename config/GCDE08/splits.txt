@@ -160,6 +160,11 @@ ngc/veronica/prog/ngc_sg_sd.c:
 	extabindex  start:0x800122C8 end:0x8001240C
 	.text       start:0x8017A340 end:0x8017C238
 
+ngc/veronica/prog/ngc_event.c:
+	extab       start:0x8000A758 end:0x8000A768
+	extabindex  start:0x80012784 end:0x8001279C
+	.text       start:0x8018201C end:0x80182300
+
 ngc/veronica/prog/gdlib.c:
 	extab       start:0x8000A8B8 end:0x8000A8D8
 	extabindex  start:0x80012994 end:0x800129C4
