@@ -150,6 +150,11 @@ ngc/veronica/prog/vibman.c:
 	.sdata      start:0x804E8F80 end:0x804E8F88
 	.sbss       start:0x804E9790 end:0x804E9798
 
+ngc/veronica/prog/weapon.c:
+	extab       start:0x80009F78 end:0x80009FD8
+	extabindex  start:0x80011BB4 end:0x80011C44
+	.text       start:0x8016D810 end:0x801710D8
+
 ngc/veronica/prog/ngc_NaFog.c:
 	extab       start:0x8000A230 end:0x8000A250
 	extabindex  start:0x80011FC8 end:0x80011FF8

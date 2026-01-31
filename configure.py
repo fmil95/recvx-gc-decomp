@@ -351,6 +351,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/sync.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/system.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/vibman.c"),  # ready to match
+            Object(NonMatching, "ngc/veronica/prog/weapon.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/ngc_NaFog.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ngc_Ninjapad.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/main.c"),  # needs decompiling
