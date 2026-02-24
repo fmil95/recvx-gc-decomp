@@ -339,6 +339,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/binfunc.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/cut.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/dread.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/eneset.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/flag.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/game.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/pad.c"),  # needs decompiling

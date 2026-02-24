@@ -68,6 +68,11 @@ ngc/veronica/prog/dread.c:
 	extabindex  start:0x8000B668 end:0x8000B68C
 	.text       start:0x80025FB8 end:0x80026650
 
+ngc/veronica/prog/eneset.c:
+	extab       start:0x80008648 end:0x80008690
+	extabindex  start:0x8000F5EC end:0x8000F658
+	.text       start:0x800F3A08 end:0x800F50C4
+
 ngc/veronica/prog/flag.c:
 	.text       start:0x8010E224 end:0x8010E28C
 
