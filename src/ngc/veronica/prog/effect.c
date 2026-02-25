@@ -1,0 +1,29 @@
+
+
+// bhSetFontTexture 
+// bhClearEffect 
+// bhClearEventEffect 
+// bhClrEff_YT 
+// bhPushEffectWork 
+// bhPopEffectWork 
+// bhGetGidx 
+// bhSetExtraEffectWork
+// bhDeleteYakkyou 
+// bhDrawPARAM2D 
+// bhSetEffect 
+// bhSetEffectTb 
+// bhSetEffectEvt 
+// bhSetShadow 
+// bhLinkBlood 
+// bhControlEffect 
+// bhDrawEffect 
+// bhDrawPolEffect 
+// bhDrawMdfEffect 
+// bhDrawLinEffect 
+// bhDrawNtxEffect3D 
+// bhDrawTrsEffect3D 
+// bhDrawOpqEffect3D 
+// bhDrawThlEffect3D 
+// bhDrawNtxEffect2D 
+// bhDrawTrsEffect2D 
+// bhDrawThunder 
