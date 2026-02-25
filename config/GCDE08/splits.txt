@@ -170,6 +170,11 @@ ngc/veronica/prog/weapon.c:
 	extabindex  start:0x80011BB4 end:0x80011C44
 	.text       start:0x8016D810 end:0x801710D8
 
+ngc/veronica/prog/zonzon1.c:
+	extab       start:0x8000A0F0 end:0x8000A1D8
+	extabindex  start:0x80011DE8 end:0x80011F44
+	.text       start:0x80173968 end:0x8017566C
+
 ngc/veronica/prog/ngc_NaFog.c:
 	extab       start:0x8000A230 end:0x8000A250
 	extabindex  start:0x80011FC8 end:0x80011FF8

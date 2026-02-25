@@ -1,0 +1,35 @@
+
+
+// bhEne_SetMinceEffect 
+// bhEne_SetMinceEffect2 
+// bhEne_SetBloodEffect 
+// bhEne_SetBloodEffect2
+// bhEne_SetBloodEffect4 
+// bhEne_SetBloodEffect5 
+// bhEne_SetBloodEffectBurst
+// bhEne_SetBloodstain 
+// bhEne_SetFireEffect 
+// bhEne_BloodPool 
+// bhEne_SetAcidEffect 
+// bhEne_DirTarget 
+// bhEne_CheckDirTarget 
+// bhEne_GetPartsPos 
+// bhEne_DirCheck 
+// bhEne_DGDirCheck 
+// bhEne_CallPlayerVoice 
+// bhEne_CheckEnemiesBall 
+// bhEne_SetWeponAtr 
+// bhEne_AttackHitCheck 
+// bhEne_AddNullTrans 
+// bhEne_AddNullTransDir 
+// bhEne_GetShapeCnt 
+// bhEne_CalcDamage 
+// bhEne_InitDamage 
+// bhEne_CallSE 
+// bhEne_CallSE_EX 
+// bhEne_CallEffectSE 
+// bhEne_SetSEPan 
+// bhEne_CheckPlayEffectSE 
+// bhArcTan2 
+// bhEne_CheckEventAtr 
+// bhEne_EraseArrow 
