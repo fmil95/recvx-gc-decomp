@@ -128,6 +128,11 @@ ngc/veronica/prog/room.c:
 	extabindex  start:0x80010D20 end:0x80010DD4
 	.text       start:0x8014C27C end:0x8014E878
 
+ngc/veronica/prog/rutchk.c:
+	extab       start:0x80009638 end:0x80009640
+	extabindex  start:0x80010DD4 end:0x80010DE0
+	.text       start:0x8014E878 end:0x8014EA24
+
 ngc/veronica/prog/sbinit.c:
 	extab       start:0x80009640 end:0x80009650
 	extabindex  start:0x80010DE0 end:0x80010DF8
