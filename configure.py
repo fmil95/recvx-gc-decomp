@@ -323,6 +323,7 @@ config.libs = [
         ],
         "progress_category": "game",  # str | List[str]
         "objects": [
+            Object(NonMatching, "ngc/veronica/prog/light.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/message.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/Motion.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/njloop.c"),  # ready to match

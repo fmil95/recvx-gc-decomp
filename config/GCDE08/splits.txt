@@ -91,6 +91,11 @@ ngc/veronica/prog/game.c:
 	extabindex  start:0x8000FE80 end:0x8000FEB0
 	.text       start:0x8010E28C end:0x8010F6D0
 
+ngc/veronica/prog/light.c:
+	extab       start:0x80008DE8 end:0x80008E18
+	extabindex  start:0x8001015C end:0x800101A4
+	.text       start:0x8011F498 end:0x80120D88
+
 ngc/veronica/prog/message.c:
 	extab       start:0x80008FE8 end:0x80009038
 	extabindex  start:0x8001045C end:0x800104D4
