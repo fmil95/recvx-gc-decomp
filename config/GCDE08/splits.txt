@@ -83,6 +83,11 @@ ngc/veronica/prog/eneset.c:
 	extabindex  start:0x8000F5EC end:0x8000F658
 	.text       start:0x800F3A08 end:0x800F50C4
 
+ngc/veronica/prog/event.c:
+	extab       start:0x80008698 end:0x80008AB0
+	extabindex  start:0x8000F664 end:0x8000FC88
+	.text       start:0x800F5288 end:0x80109008
+
 ngc/veronica/prog/face.c:
 	extab       start:0x80008AB0 end:0x80008AC0
 	extabindex  start:0x8000FC88 end:0x8000FCA0
