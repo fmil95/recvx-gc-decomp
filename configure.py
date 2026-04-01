@@ -347,6 +347,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/face.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/flag.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/game.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/hitchk.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/pad.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/padman.c"),  # functions matched, but there is extra bss
             Object(NonMatching, "ngc/veronica/prog/player.c"),  # needs decompiling

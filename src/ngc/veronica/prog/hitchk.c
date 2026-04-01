@@ -1,0 +1,32 @@
+
+
+// bhCheckWall 
+// bhCheckWallEx 
+// bhCheckWall2Box 
+// bhCheckWallType 
+// bhCheckWallType2 
+// bhCheckWallRefAngle 
+// bhSetWallRefAngle 
+// bhGetGroundPosition 
+// bhCheckInnerTriangle 
+// bhCheckInnerTriangle2
+// bhCheckInnerTriangle3
+// bhCheckBox 
+// bhCheckBox2Box 
+// bhCheckInnerP4 
+// bhCheckExmAtari 
+// bhSetUseKaidanFlag 
+// bhClrUseKaidanFlag 
+// bhSetDansaLimitAtari 
+// bhCheckDansaAtari 
+// bhCheckFloorP 
+// bhCheckDansa 
+// bhCheckFloorSound 
+// bhCheckFloorEnemy 
+// bhCheckFloorEffect 
+// bhCheckWater 
+// bhCheckL2Water 
+// bhResetAtariAttr 
+// bhCheckPlayer 
+// bhCheckEnemies 
+// bhCheckWallAttrB89 
