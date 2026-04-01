@@ -93,6 +93,11 @@ ngc/veronica/prog/face.c:
 	extabindex  start:0x8000FC88 end:0x8000FCA0
 	.text       start:0x80109008 end:0x801097F4
 
+ngc/veronica/prog/face_bh.c:
+	extab       start:0x80008AC0 end:0x80008B68
+	extabindex  start:0x8000FCA0 end:0x8000FD9C
+	.text       start:0x801097F4 end:0x8010B598
+
 ngc/veronica/prog/flag.c:
 	.text       start:0x8010E224 end:0x8010E28C
 

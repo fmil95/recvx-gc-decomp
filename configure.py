@@ -345,6 +345,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/eneset.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/event.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/face.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/face_bh.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/flag.c"),  # ready to match
             Object(NonMatching, "ngc/veronica/prog/game.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/hitchk.c"),  # needs decompiling
