@@ -1,0 +1,37 @@
+
+
+// bhInitDoor 
+// bhReadDoorData 
+// bhSetDoor 
+// bhExitDoor 
+// AnalyzeDoor 
+// bhControlDoor 
+// ControlSoundTiming
+// SetSoundTiming 
+// FadeProc1 
+// ViewProc1 
+// ViewProc2 
+// ViewProc3 
+// ViewProc4 
+// ViewProc5 
+// ViewProc6 
+// ViewProc7 
+// DoorProc1 
+// DoorProc2 
+// DoorProc3 
+// DoorProc4 
+// DoorProc5 
+// DoorProc6 
+// DoorProc7 
+// LightProc1 
+// LightProc2 
+// CompareSint32 
+// CompareFloat 
+// VectorMove 
+// LightSubAmb 
+// LightSubPnt 
+// ryExcuteFade 
+// PuruProc1 
+// DokiProcLgt 
+// fn_80025E0C 
+// fn_80025F20 
