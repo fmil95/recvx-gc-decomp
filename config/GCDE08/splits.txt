@@ -121,6 +121,11 @@ ngc/veronica/prog/hitchk.c:
 	extabindex  start:0x8000FF10 end:0x80010000
 	.text       start:0x80110E20 end:0x8011B178
 
+ngc/veronica/prog/itemview.c:
+	extab       start:0x80008D50 end:0x80008DC8
+	extabindex  start:0x80010078 end:0x8001012C
+	.text       start:0x8011CE98 end:0x8011F104
+
 ngc/veronica/prog/light.c:
 	extab       start:0x80008DE8 end:0x80008E18
 	extabindex  start:0x8001015C end:0x800101A4
