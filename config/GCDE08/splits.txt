@@ -163,7 +163,7 @@ ngc/veronica/prog/player.c:
 	extabindex  start:0x800108AC end:0x80010A98
 	.text       start:0x8013305C end:0x8014137C
 
-ngc/veronica/prog/rank.c:
+ngc/veronica/prog/ranking.c:
 	extab       start:0x80009528 end:0x800095C0
 	extabindex  start:0x80010C3C end:0x80010D20
 	.text       start:0x8014A8D0 end:0x8014C27C
