@@ -362,6 +362,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/screen.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sdc.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sdfunc.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/sub1.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/subpl.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/sync.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/system.c"),  # needs decompiling
