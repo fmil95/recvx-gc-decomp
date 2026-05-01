@@ -343,6 +343,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/door.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/dread.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/effect.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/effsub0.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/effsub1.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/effsub1b.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/eneset.c"),  # needs decompiling
