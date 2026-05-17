@@ -188,6 +188,11 @@ ngc/veronica/prog/padman.c:
 	.sdata      start:0x804E8E98 end:0x804E8EA0
 	.sbss       start:0x804E9660 end:0x804E9670
 
+ngc/veronica/prog/pl_evt.c:
+	extab       start:0x80009290 end:0x800092C8
+	extabindex  start:0x80010858 end:0x800108AC
+	.text       start:0x80131744 end:0x8013305C
+
 ngc/veronica/prog/player.c:
 	extab       start:0x800092C8 end:0x80009410
 	extabindex  start:0x800108AC end:0x80010A98
