@@ -131,6 +131,11 @@ ngc/veronica/prog/game.c:
 	extabindex  start:0x8000FE80 end:0x8000FEB0
 	.text       start:0x8010E28C end:0x8010F6D0
 
+ngc/veronica/prog/gameover.c:
+	extab       start:0x80008C30 end:0x80008C60
+	extabindex  start:0x8000FEC8 end:0x8000FF10
+	.text       start:0x8010F894 end:0x80110E20
+
 ngc/veronica/prog/hitchk.c:
 	extab       start:0x80008C60 end:0x80008D00
 	extabindex  start:0x8000FF10 end:0x80010000
