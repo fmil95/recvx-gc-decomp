@@ -156,6 +156,11 @@ ngc/veronica/prog/light.c:
 	extabindex  start:0x8001015C end:0x800101A4
 	.text       start:0x8011F498 end:0x80120D88
 
+ngc/veronica/prog/map.c:
+	extab       start:0x80008E18 end:0x80008FE8
+	extabindex  start:0x800101A4 end:0x8001045C
+	.text       start:0x80120D88 end:0x8012608C
+
 ngc/veronica/prog/message.c:
 	extab       start:0x80008FE8 end:0x80009038
 	extabindex  start:0x8001045C end:0x800104D4
