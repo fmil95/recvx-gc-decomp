@@ -363,6 +363,7 @@ config.libs = [
             Object(NonMatching, "ngc/veronica/prog/padman.c"),  # functions matched, but there is extra bss
             Object(NonMatching, "ngc/veronica/prog/pl_evt.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/player.c"),  # needs decompiling
+            Object(NonMatching, "ngc/veronica/prog/playpch.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/pwksub.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/ranking.c"),  # needs decompiling
             Object(NonMatching, "ngc/veronica/prog/room.c"),  # needs decompiling

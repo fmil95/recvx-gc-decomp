@@ -208,6 +208,11 @@ ngc/veronica/prog/player.c:
 	extabindex  start:0x800108AC end:0x80010A98
 	.text       start:0x8013305C end:0x8014137C
 
+ngc/veronica/prog/playpch.c:
+	extab       start:0x80009410 end:0x80009468
+	extabindex  start:0x80010A98 end:0x80010B1C
+	.text       start:0x8014137C end:0x80143B20
+
 ngc/veronica/prog/pwksub.c:
 	extab       start:0x80009470 end:0x80009528
 	extabindex  start:0x80010B28 end:0x80010C3C
