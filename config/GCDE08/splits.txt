@@ -253,6 +253,11 @@ ngc/veronica/prog/sdfunc.c:
 	extabindex  start:0x800110E0 end:0x80011584
 	.text       start:0x8015285C end:0x80157B0C
 
+ngc/veronica/prog/sp_evt.c:
+	extab       start:0x80009B58 end:0x80009BE0
+	extabindex  start:0x80011584 end:0x80011650
+	.text       start:0x80157B0C end:0x8015AE48
+
 ngc/veronica/prog/sub1.c:
 	extab       start:0x80009BE0 end:0x80009D90
 	extabindex  start:0x80011650 end:0x800118D8
