@@ -99,7 +99,14 @@ ngc/veronica/prog/effsub2.c:
 	.text       start:0x80043A30 end:0x8004BB98
 
 ngc/veronica/prog/effsub3.c:
+	extab       start:0x800061B8 end:0x800062D0
+	extabindex  start:0x8000BF14 end:0x8000C0B8
 	.text       start:0x8004BB98 end:0x800512CC
+
+ngc/veronica/prog/effsub5.c:
+	extab       start:0x800063B8 end:0x80006580
+	extabindex  start:0x8000C214 end:0x8000C4C0
+	.text       start:0x80055D70 end:0x800609F4
 
 ngc/veronica/prog/eneset.c:
 	extab       start:0x80008648 end:0x80008690
