@@ -1,0 +1,37 @@
+
+
+// bhEff_SetPtcl 
+// bhEff_SetPtcl1 
+// bhEff_SetPtcl2 
+// bhEff_SetPtcl2V 
+// bhEff_SetBlood5 
+// bhEff_Sub350 
+// bhEff_Sub351 
+// bhEff_Sub352 
+// bhEff_Sub353 
+// bhEff_Sub354 
+// bhEff_Sub355 
+// bhEff_Sub356 
+// bhEff_Sub357 
+// bhEff_Sub360 
+// bhEff_Sub361 
+// bhEff_Sub362 
+// bhEff_Sub363 
+// bhEff_Sub364 
+// bhEff_Sub365 
+// bhEff_Sub366 
+// bhEff_Sub367 
+// bhEff_Sub368 
+// bhEff_Sub369 
+// bhEff_Sub370 
+// bhEff_Sub371 
+// bhEff_Sub372 
+// bhEff_Sub373 
+// bhEff_Sub398 
+// bhEff_AllocOwork 
+// bhEff_PtclSpriteDraw
+// bhEff_LineDraw 
+// bhEff_SetSprite 
+// bhEff_SetSpriteAnime
+// bhEff_3DSpriteDraw 
+// bhEff_ModelDraw 
